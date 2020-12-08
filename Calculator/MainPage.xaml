@@ -7,42 +7,22 @@
     mc:Ignorable="d">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="BaseButton" TargetType="Button">
-                <Setter Property="Text" Value="Empty" />
-                <Setter Property="BackgroundColor" Value="Gray" />
-                <Setter Property="FontSize" Value="35" />
-                <Setter Property="BorderColor" Value="Black" />
-            </Style>
-
-            <Style
-                x:Key="GreyOperatorButton"
-                BasedOn="{StaticResource BaseButton}"
-                TargetType="Button">
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="BackgroundColor" Value="Gray" />
-            </Style>
-
-            <Style
-                x:Key="YellowOperatorButton"
-                BasedOn="{StaticResource BaseButton}"
-                TargetType="Button">
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="BackgroundColor" Value="Orange" />
-            </Style>
-
-            <Style
-                x:Key="WhiteNumericButton"
-                BasedOn="{StaticResource BaseButton}"
-                TargetType="Button">
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="BackgroundColor" Value="White" />
-            </Style>
 
             <Style x:Key="GridBackground" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="DarkSlateBlue" />
                 <Setter Property="BackgroundColor" Value="DarkSlateBlue" />
             </Style>
+
+            <Style x:Key="SudokuField" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="BackgroundColor" Value="LightGray" />
+            </Style>
+
+
 
 
 
@@ -53,36 +33,36 @@
         ColumnSpacing="3"
         RowSpacing="3">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
         <!--#region BackgroundLabels-->
@@ -452,8 +432,20 @@
             Style="{StaticResource GridBackground}" />
         <!--#endregion-->
 
-
-
+        <!--#region Sudokufields-->
+        <Label
+            x:Name="S1F1"
+            Grid.Row="1"
+            Grid.Column="1"
+            Style="{StaticResource SudokuField}"
+            Text="1" />
+        <Label
+            x:Name="S1F2"
+            Grid.Row="1"
+            Grid.Column="2"
+            Style="{StaticResource SudokuField}"
+            Text="1" />
+        <!--#endregion-->
 
     </Grid>
 </ContentPage>
