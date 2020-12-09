@@ -7,7 +7,6 @@
     mc:Ignorable="d">
     <ContentPage.Resources>
         <ResourceDictionary>
-
             <Style x:Key="GridBackground" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="DarkSlateBlue" />
@@ -21,11 +20,6 @@
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="BackgroundColor" Value="LightGray" />
             </Style>
-
-
-
-
-
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid
@@ -453,11 +447,20 @@
             Text="{Binding Field03}" />
         <!--#endregion-->
 
-        <Entry
+        <Editor
+            x:Name="S1F4"
             Grid.Row="2"
             Grid.Column="1"
-            Text="zz"
-            />
+            FontAttributes="Bold"
+            Text="{Binding Field04}" />
+
+        <Entry
+            x:Name="S1F5"
+            Grid.Row="2"
+            Grid.Column="2"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center"
+            Text="{Binding Field04.value}" />
 
         <Button
             Grid.Row="13"

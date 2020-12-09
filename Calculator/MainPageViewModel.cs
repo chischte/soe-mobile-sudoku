@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
-
+// https://www.c-sharpcorner.com/article/login-form-in-xamarin-forms-for-biggner-using-mvvm-pattern/
 namespace Calculator
 {
     public class MainPageViewModel : ViewModelBase
@@ -33,7 +33,6 @@ namespace Calculator
 
 
         private string _field01 = string.Empty;
-
         public string Field01
         {
             get
@@ -51,7 +50,6 @@ namespace Calculator
         }
 
         private string _field02 = string.Empty;
-
         public string Field02
         {
             get
@@ -69,7 +67,6 @@ namespace Calculator
         }
 
         private string _field03 = string.Empty;
-
         public string Field03
         {
             get
@@ -82,6 +79,23 @@ namespace Calculator
                 {
                     _field03 = value;
                     OnPropertyChanged(nameof(Field03));
+                }
+            }
+        }
+        private string _field04 = string.Empty;
+        public string Field04
+        {
+            get
+            {
+                return _field04;
+            }
+            private set
+            {
+                if (_field04 != value)
+                {
+                    _field04 = value;
+                    OnPropertyChanged(nameof(Field04));
+                    Field03 = "444";
                 }
             }
         }
