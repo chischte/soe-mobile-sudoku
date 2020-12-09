@@ -438,14 +438,40 @@
             Grid.Row="1"
             Grid.Column="1"
             Style="{StaticResource SudokuField}"
-            Text="{Binding Loeschstring}" />
+            Text="{Binding Field01}" />
         <Label
             x:Name="S1F2"
             Grid.Row="1"
             Grid.Column="2"
             Style="{StaticResource SudokuField}"
-            Text="1" />
+            Text="{Binding Field02}" />
+        <Label
+            x:Name="S1F3"
+            Grid.Row="1"
+            Grid.Column="3"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field03}" />
         <!--#endregion-->
+
+        <Entry
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="zz"
+            />
+
+        <Button
+            Grid.Row="13"
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            BackgroundColor="Gray"
+            Command="{Binding LoadButtonCommand}"
+            CommandParameter="111"
+            FontAttributes="Bold"
+            FontSize="20"
+            Text="LOAD"
+            VerticalOptions="Center" />
+
+
 
     </Grid>
 </ContentPage>

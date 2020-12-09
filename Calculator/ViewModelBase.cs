@@ -6,7 +6,7 @@ namespace Calculator
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void Notify(string propertyName)
+        protected void OnPropertyChanged(string propertyName)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

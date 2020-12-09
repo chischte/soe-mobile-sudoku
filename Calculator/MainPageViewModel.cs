@@ -7,7 +7,7 @@ namespace Calculator
     public class MainPageViewModel : ViewModelBase
     {
         private readonly ICalculator calculator;
-        
+
         //-------------------------
         private SudokuList sudokuList;
 
@@ -23,154 +23,91 @@ namespace Calculator
             }
             private set
             {
-                if(result != value)
+                if (result != value)
                 {
                     result = value;
-                    Notify(nameof(Result));
+                    OnPropertyChanged(nameof(Result));
                 }
             }
         }
 
 
-        private string _loeschstring = string.Empty;
+        private string _field01 = string.Empty;
 
-        public string Loeschstring
+        public string Field01
         {
             get
             {
-                return _loeschstring;
+                return _field01;
             }
             private set
             {
-                if (_loeschstring != value)
+                if (_field01 != value)
                 {
-                    _loeschstring = value;
-                    Notify(nameof(Loeschstring));
+                    _field01 = value;
+                    OnPropertyChanged(nameof(Field01));
                 }
             }
         }
 
+        private string _field02 = string.Empty;
 
-
-        private ICommand addElementCommand;
-        public ICommand AddElementCommand
+        public string Field02
         {
             get
             {
-                addElementCommand = new Command<string>(CalculatorCommand);
+                return _field02;
+            }
+            private set
+            {
+                if (_field02 != value)
+                {
+                    _field02 = value;
+                    OnPropertyChanged(nameof(Field03));
+                }
+            }
+        }
 
-                return addElementCommand;
+        private string _field03 = string.Empty;
+
+        public string Field03
+        {
+            get
+            {
+                return _field03;
+            }
+            private set
+            {
+                if (_field03 != value)
+                {
+                    _field03 = value;
+                    OnPropertyChanged(nameof(Field03));
+                }
             }
         }
 
         public MainPageViewModel(ICalculator calculator)
         {
             this.calculator = calculator;
-            this.sudokuList=new SudokuList();
-            Loeschstring = sudokuList[1].FieldValueString;
+            this.sudokuList = new SudokuList();
+            Field01 = sudokuList[0].FieldValueString;
+            Field02 = sudokuList[1].FieldValueString;
         }
 
-        private void CalculatorCommand(string args)
+        private ICommand _loadButtonCommand;
+        public ICommand LoadButtonCommand
         {
-            if(int.TryParse(args, out int number))
+            get
             {
-                Number n = (Number)number;
-                this.calculator.AddOperand(n);
-                UpdateResult(args);
-            }
-            else if(TryParseOperator(args, out Operator op))
-            {
-                if(this.calculator.AddOperator(op))
-                {
-                    UpdateResult(args);
-                }
-            }
-            else
-            {
-                switch(args)
-                {
-                    case "=":
-                        string result;
-
-                        try
-                        {
-                            result = calculator.GetResult().ToString();
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            result = "Divided by 0!!!";
-                        }
-
-                        SetResult(result);
-                        break;
-
-                    case "%":
-                        SetResult(calculator.DivideBy100().ToString());
-                        break;
-
-                    case ".":
-                        if (calculator.AddComma())
-                        {
-                            UpdateResult(",");
-                        }
-                        break;
-
-                    case "C":
-                        calculator.Reset();
-                        ResetResult();
-                        break;
-
-                    case "+-":
-                        SetResult(calculator.FlipSign().ToString());
-                        break;
-                }
-            }
-        }
-
-        private void UpdateResult(string value)
-        {
-            Result += value;
-        }
-
-        private void SetResult(string value)
-        {
-            Result = value;
-        }
-
-        private void ResetResult()
-        {
-            Result = string.Empty;
-        }
-
-        private bool TryParseOperator(string args, out Operator @operator)
-        {
-            @operator = Operator.Unknown;
-            var result = false;
-
-            switch (args)
-            {
-                case "/":
-                    @operator = Operator.Div;
-                    result = true;
-                    break;
-
-                case "-":
-                    @operator = Operator.Minus;
-                    result = true;
-                    break;
-
-                case "X":
-                    @operator = Operator.Multi;
-                    result = true;
-                    break;
-
-                case "+":
-                    @operator = Operator.Plus;
-                    result = true;
-                    break;
+                _loadButtonCommand = new Command<string>(Load);
+                return _loadButtonCommand;
             }
 
-            return result;
+        }
+
+        private void Load(string commandString)
+        {
+            Field03 = commandString;
         }
     }
 }
