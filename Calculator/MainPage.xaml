@@ -438,7 +438,7 @@
             Grid.Row="1"
             Grid.Column="1"
             Style="{StaticResource SudokuField}"
-            Text="1" />
+            Text="{Binding Loeschstring}" />
         <Label
             x:Name="S1F2"
             Grid.Row="1"

@@ -7,6 +7,12 @@ namespace Calculator
     public class MainPageViewModel : ViewModelBase
     {
         private readonly ICalculator calculator;
+        
+        //-------------------------
+        private SudokuList sudokuList;
+
+        private string sudokuString;
+        //-------------------------
 
         private string result = string.Empty;
         public string Result
@@ -25,6 +31,27 @@ namespace Calculator
             }
         }
 
+
+        private string _loeschstring = string.Empty;
+
+        public string Loeschstring
+        {
+            get
+            {
+                return _loeschstring;
+            }
+            private set
+            {
+                if (_loeschstring != value)
+                {
+                    _loeschstring = value;
+                    Notify(nameof(Loeschstring));
+                }
+            }
+        }
+
+
+
         private ICommand addElementCommand;
         public ICommand AddElementCommand
         {
@@ -39,6 +66,8 @@ namespace Calculator
         public MainPageViewModel(ICalculator calculator)
         {
             this.calculator = calculator;
+            this.sudokuList=new SudokuList();
+            Loeschstring = sudokuList[1].FieldValueString;
         }
 
         private void CalculatorCommand(string args)
