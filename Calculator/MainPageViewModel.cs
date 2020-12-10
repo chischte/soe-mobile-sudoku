@@ -46,7 +46,7 @@ namespace Calculator
                 if (_field02 != value)
                 {
                     _field02 = value;
-                    OnPropertyChanged(nameof(Field03));
+                    OnPropertyChanged(nameof(Field02));
                 }
             }
         }
@@ -79,7 +79,6 @@ namespace Calculator
                 _field04 = value;
                 OnPropertyChanged(nameof(Field04));
                 Field03 = "333";
-
             }
         }
 
