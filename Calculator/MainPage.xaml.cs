@@ -10,9 +10,9 @@ namespace Calculator
     {
         public MainPage(MainPageViewModel vm)
         {
+            InitializeComponent();
             BindingContext = vm;
 
-            InitializeComponent();
         }
     }
 }

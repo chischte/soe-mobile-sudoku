@@ -462,6 +462,15 @@
             HorizontalTextAlignment="Center"
             Text="{Binding Field04.value}" />
 
+        <Entry
+            x:Name="Email"
+            Grid.Row="2"
+            Grid.Column="3"
+            HeightRequest="40"
+            Keyboard="Email"
+            Placeholder="Email"
+            Text="{Binding Email}" />
+
         <Button
             Grid.Row="13"
             Grid.Column="1"
