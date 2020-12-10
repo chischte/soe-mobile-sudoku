@@ -455,19 +455,17 @@
             Text="{Binding Field04}" />
 
         <Entry
-            x:Name="S1F5"
+            x:Name="Field04"
             Grid.Row="2"
             Grid.Column="2"
-            FontAttributes="Bold"
-            HorizontalTextAlignment="Center"
-            Text="{Binding Field04.value}" />
+            HeightRequest="40"
+            Placeholder="Field04"
+            Text="{Binding Field04}" />
 
         <Entry
-            x:Name="Email"
             Grid.Row="2"
             Grid.Column="3"
             HeightRequest="40"
-            Keyboard="Email"
             Placeholder="Email"
             Text="{Binding Email}" />
 
