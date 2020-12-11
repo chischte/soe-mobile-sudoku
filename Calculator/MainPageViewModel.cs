@@ -24,7 +24,7 @@ namespace Calculator
             {
                 return _field01;
             }
-            private set
+           set
             {
                 if (_field01 != value)
                 {
@@ -41,7 +41,7 @@ namespace Calculator
             {
                 return _field02;
             }
-            private set
+            set
             {
                 if (_field02 != value)
                 {
@@ -58,7 +58,7 @@ namespace Calculator
             {
                 return _field03;
             }
-            private set
+            set
             {
                 if (_field03 != value)
                 {
@@ -76,28 +76,16 @@ namespace Calculator
             }
             set
             {
-                _field04 = value;
-                OnPropertyChanged(nameof(Field04));
-                Field03 = "333";
+                if (_field03 != value)
+                {
+                    _field04 = value;
+                    OnPropertyChanged(nameof(Field04));
+                    Field03 = "333";
+                }
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private string email;
-        public string Email
-        {
-            get { return email; }
-            set
-            {
-                email = value;
-                OnPropertyChanged(nameof(Email));
-                Field03 = "444";
-            }
-        }
-
-
-        public MainPageViewModel(ICalculator calculator)
+       public MainPageViewModel(ICalculator calculator)
         {
             this.calculator = calculator;
             this.sudokuList = new SudokuList();

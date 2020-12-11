@@ -55,6 +55,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
             <RowDefinition Height="20" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="50" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
@@ -427,6 +428,7 @@
         <!--#endregion-->
 
         <!--#region Sudokufields-->
+        <!--
         <Label
             x:Name="S1F1"
             Grid.Row="1"
@@ -445,29 +447,34 @@
             Grid.Column="3"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field03}" />
+        -->
         <!--#endregion-->
 
-        <Editor
-            x:Name="S1F4"
+        <Entry
+            Grid.Row="1"
+            Grid.Column="1"
+            Placeholder="S1F1"
+            Text="{Binding Field01}" />
+
+        <Entry
+            Grid.Row="1"
+            Grid.Column="2"
+            Placeholder="S1F2"
+            Text="{Binding Field02}" />
+
+        <Entry
             Grid.Row="2"
             Grid.Column="1"
-            FontAttributes="Bold"
-            Text="{Binding Field04}" />
-
+            HeightRequest="40"
+            Text="{Binding Field03}" />
         <Entry
             Grid.Row="2"
             Grid.Column="2"
-            Placeholder="S1F4"
+            HeightRequest="40"
             Text="{Binding Field04}" />
 
-        <Entry
-            Grid.Row="2"
-            Grid.Column="3"
-            HeightRequest="40"
-            Text="{Binding Email}" />
-
         <Button
-            Grid.Row="13"
+            Grid.Row="14"
             Grid.Column="1"
             Grid.ColumnSpan="3"
             BackgroundColor="Gray"
@@ -477,8 +484,28 @@
             FontSize="20"
             Text="LOAD"
             VerticalOptions="Center" />
-
-
+        <Button
+            Grid.Row="14"
+            Grid.Column="5"
+            Grid.ColumnSpan="3"
+            BackgroundColor="Gray"
+            Command="{Binding LoadButtonCommand}"
+            CommandParameter="111"
+            FontAttributes="Bold"
+            FontSize="20"
+            Text="CHECK"
+            VerticalOptions="Center" />
+        <Button
+            Grid.Row="14"
+            Grid.Column="9"
+            Grid.ColumnSpan="3"
+            BackgroundColor="Gray"
+            Command="{Binding LoadButtonCommand}"
+            CommandParameter="111"
+            FontAttributes="Bold"
+            FontSize="20"
+            Text="REFRESH"
+            VerticalOptions="Center" />
 
     </Grid>
 </ContentPage>
