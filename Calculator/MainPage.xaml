@@ -7,19 +7,20 @@
     mc:Ignorable="d">
     <ContentPage.Resources>
         <ResourceDictionary>
+
             <Style x:Key="GridBackground" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="DarkSlateBlue" />
                 <Setter Property="BackgroundColor" Value="DarkSlateBlue" />
             </Style>
 
-            <Style x:Key="SudokuField" TargetType="Label">
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Style x:Key="SudokuField" TargetType="Entry">
+                <!-- <Setter Property="HorizontalTextAlignment" Value="Center" />-->
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="27" />
                 <Setter Property="TextColor" Value="Black" />
-                <Setter Property="BackgroundColor" Value="LightGray" />
             </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid
@@ -428,50 +429,33 @@
         <!--#endregion-->
 
         <!--#region Sudokufields-->
-        <!--
-        <Label
-            x:Name="S1F1"
-            Grid.Row="1"
-            Grid.Column="1"
-            Style="{StaticResource SudokuField}"
-            Text="{Binding Field01}" />
-        <Label
-            x:Name="S1F2"
-            Grid.Row="1"
-            Grid.Column="2"
-            Style="{StaticResource SudokuField}"
-            Text="{Binding Field02}" />
-        <Label
-            x:Name="S1F3"
-            Grid.Row="1"
-            Grid.Column="3"
-            Style="{StaticResource SudokuField}"
-            Text="{Binding Field03}" />
-        -->
-        <!--#endregion-->
 
         <Entry
             Grid.Row="1"
             Grid.Column="1"
-            Placeholder="S1F1"
+            IsEnabled="{Binding FieldIsEnabledArray[0]}"
+            Style="{StaticResource SudokuField}"
             Text="{Binding Field01}" />
-
         <Entry
             Grid.Row="1"
             Grid.Column="2"
-            Placeholder="S1F2"
+            IsEnabled="{Binding FieldIsEnabledArray[1]}"
+            Style="{StaticResource SudokuField}"
             Text="{Binding Field02}" />
-
         <Entry
             Grid.Row="2"
             Grid.Column="1"
-            HeightRequest="40"
+            IsEnabled="{Binding FieldIsEnabledArray[2]}"
+            Style="{StaticResource SudokuField}"
             Text="{Binding Field03}" />
         <Entry
             Grid.Row="2"
             Grid.Column="2"
-            HeightRequest="40"
+            IsEnabled="{Binding FieldIsEnabledArray[3]}"
+            Style="{StaticResource SudokuField}"
             Text="{Binding Field04}" />
+
+        <!--#endregion-->
 
         <Button
             Grid.Row="14"
@@ -489,7 +473,7 @@
             Grid.Column="5"
             Grid.ColumnSpan="3"
             BackgroundColor="Gray"
-            Command="{Binding LoadButtonCommand}"
+            Command="{Binding CheckButtonCommand}"
             CommandParameter="111"
             FontAttributes="Bold"
             FontSize="20"
@@ -500,7 +484,7 @@
             Grid.Column="9"
             Grid.ColumnSpan="3"
             BackgroundColor="Gray"
-            Command="{Binding LoadButtonCommand}"
+            Command="{Binding CheckButtonCommand}"
             CommandParameter="111"
             FontAttributes="Bold"
             FontSize="20"

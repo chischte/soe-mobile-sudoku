@@ -8,29 +8,45 @@ namespace Calculator
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private readonly ICalculator calculator;
+        private readonly SudokuManager sudokuManager;
 
-        //-------------------------
-        private SudokuList sudokuList;
+        public int NumberOfFields = 81;
+        public string[] FieldIsEnabledArray { get; set; }
+        public MainPageViewModel(ICalculator calculator)
+        {
+            this.sudokuManager = new SudokuManager();
+            AssignValuesToFields();
+            DisableFieldsWithFixedNumbers();
+        }
+        private void AssignValuesToFields()
+        {
+            var sudokuIntArray = sudokuManager.GetSudokuIntArray();
+            Field01 = (sudokuIntArray[0] == 0) ? "" : sudokuIntArray[0].ToString();
+            Field02 = (sudokuIntArray[1] == 0) ? "" : sudokuIntArray[1].ToString();
+            Field03 = (sudokuIntArray[2] == 0) ? "" : sudokuIntArray[2].ToString();
+            Field04 = (sudokuIntArray[3] == 0) ? "" : sudokuIntArray[3].ToString();
+        }
+        private void DisableFieldsWithFixedNumbers()
+        {
+            var sudokuIntArray = sudokuManager.GetSudokuIntArray();
+            FieldIsEnabledArray = new string[NumberOfFields];
+            for (int i = 0; i < sudokuIntArray.Length; i++)
+            {
+                FieldIsEnabledArray[i] = (sudokuIntArray[i] == 0) ? "true" : "false";
+            }
+        }
 
-        private string sudokuString;
-        //-------------------------
-
+        #region INotifyFields
 
         private string _field01 = string.Empty;
         public string Field01
         {
-            get
+            get => _field01;
+            set
             {
-                return _field01;
-            }
-           set
-            {
-                if (_field01 != value)
-                {
-                    _field01 = value;
-                    OnPropertyChanged(nameof(Field01));
-                }
+                if (_field01 == value) return;
+                _field01 = value;
+                OnPropertyChanged(nameof(Field01));
             }
         }
 
@@ -76,22 +92,16 @@ namespace Calculator
             }
             set
             {
-                if (_field03 != value)
+                if (_field04 != value)
                 {
                     _field04 = value;
                     OnPropertyChanged(nameof(Field04));
-                    Field03 = "333";
                 }
             }
         }
+        #endregion
 
-       public MainPageViewModel(ICalculator calculator)
-        {
-            this.calculator = calculator;
-            this.sudokuList = new SudokuList();
-            Field01 = sudokuList[0].FieldValueString;
-            Field02 = sudokuList[1].FieldValueString;
-        }
+        #region ICommandButtons
 
         private ICommand _loadButtonCommand;
         public ICommand LoadButtonCommand
@@ -103,10 +113,25 @@ namespace Calculator
             }
 
         }
-
         private void Load(string commandString)
         {
             Field03 = commandString;
         }
+
+        private ICommand _checkButtonCommand;
+        public ICommand CheckButtonCommand
+        {
+            get
+            {
+                _checkButtonCommand = new Command<string>(Check);
+                return _checkButtonCommand;
+            }
+
+        }
+        private void Check(string commandString)
+        {
+
+        }
+        #endregion
     }
 }
