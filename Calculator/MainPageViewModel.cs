@@ -50,6 +50,7 @@ namespace Calculator
             {
                 int.TryParse(stringArray[i], out intArray[i]);
             }
+            intArray = RemoveInvalidEntries(intArray);
             return intArray;
         }
 
@@ -170,8 +171,7 @@ namespace Calculator
         private void CheckAndRefresh(string commandString)
         {
             int[] valuesFromFields = GetIntArrayFromFields();
-            valuesFromFields = RemoveInvalidEntries(valuesFromFields);
-            AssignValuesToFields(valuesFromFields);
+            AssignValuesToFields(valuesFromFields); // Invalid entries have been removed
             sudokuManager.CheckSudokuIntArray(valuesFromFields);
         }
         #endregion
