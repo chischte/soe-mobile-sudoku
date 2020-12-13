@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 // https://www.c-sharpcorner.com/article/login-form-in-xamarin-forms-for-biggner-using-mvvm-pattern
@@ -48,8 +49,6 @@ namespace Calculator
             {
                 int.TryParse(stringArray[i], out intArray[i]);
             }
-            intArray = RemoveInvalidEntries(intArray);
-            AssignValuesToFields(intArray);
             return intArray;
         }
 
@@ -163,14 +162,16 @@ namespace Calculator
         {
             get
             {
-                _checkButtonCommand = new Command<string>(Check);
+                _checkButtonCommand = new Command<string>(CheckAndRefresh);
                 return _checkButtonCommand;
             }
-
         }
-        private void Check(string commandString)
+        private void CheckAndRefresh(string commandString)
         {
-            sudokuManager.CheckSudokuIntArray(GetIntArrayFromFields());
+            int[] valuesFromFields = GetIntArrayFromFields();
+            valuesFromFields = RemoveInvalidEntries(valuesFromFields);
+            AssignValuesToFields(valuesFromFields);
+            sudokuManager.CheckSudokuIntArray(valuesFromFields);
         }
         #endregion
     }
