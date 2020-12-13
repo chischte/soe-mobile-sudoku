@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.iOS", "Calculato
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator", "Calculator\Calculator.csproj", "{97EB082A-1766-4225-ADEA-BA83BE4AED66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Test", "Calculator.Test\Calculator.Test.csproj", "{C74CA592-9136-4704-9244-7A4D86ED9CAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Test", "Calculator.Test\Calculator.Test.csproj", "{C74CA592-9136-4704-9244-7A4D86ED9CAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
