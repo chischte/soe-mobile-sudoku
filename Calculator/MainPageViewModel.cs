@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 // https://www.c-sharpcorner.com/article/login-form-in-xamarin-forms-for-biggner-using-mvvm-pattern
@@ -15,29 +16,56 @@ namespace Calculator
         public MainPageViewModel(ICalculator calculator)
         {
             this.sudokuManager = new SudokuManager();
-            AssignValuesToFields();
+            AssignValuesToFields(sudokuManager.GetSudokuIntArray());
             DisableFieldsWithFixedNumbers();
         }
 
-        private void AssignValuesToFields()
+        private void AssignValuesToFields(int[] sudokuIntArray)
         {
-            var sudokuIntArray = sudokuManager.GetSudokuIntArray();
             Field01 = (sudokuIntArray[0] == 0) ? "" : sudokuIntArray[0].ToString();
             Field02 = (sudokuIntArray[1] == 0) ? "" : sudokuIntArray[1].ToString();
             Field03 = (sudokuIntArray[2] == 0) ? "" : sudokuIntArray[2].ToString();
             Field04 = (sudokuIntArray[3] == 0) ? "" : sudokuIntArray[3].ToString();
         }
 
+        private string[] GetStringArrayFromFields()
+        {
+            string[] stringArrayFromFields = new string[NumberOfFields];
+            stringArrayFromFields[0] = Field01;
+            stringArrayFromFields[1] = Field02;
+            stringArrayFromFields[2] = Field03;
+            stringArrayFromFields[3] = Field04;
+
+            return stringArrayFromFields;
+        }
+
         private int[] GetIntArrayFromFields()
         {
-            int[] intArrayFromFields = new int[NumberOfFields];
-            intArrayFromFields[0] = (Field01.Equals("") ? 0 : int.Parse(Field01));
-            intArrayFromFields[1] = (Field02.Equals("") ? 0 : int.Parse(Field02));
-            intArrayFromFields[2] = (Field03.Equals("") ? 0 : int.Parse(Field03));
-            intArrayFromFields[3] = (Field04.Equals("") ? 0 : int.Parse(Field04));
+            int[] intArray = new int[NumberOfFields];
+            string[] stringArray = GetStringArrayFromFields();
 
-            return intArrayFromFields;
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                int.TryParse(stringArray[i], out intArray[i]);
+            }
+            intArray = RemoveInvalidEntries(intArray);
+            AssignValuesToFields(intArray);
+            return intArray;
         }
+
+        private int[] RemoveInvalidEntries(int[] intArray)
+        {
+            int[] validFieldValues = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                if (!validFieldValues.Contains(intArray[i]))
+                {
+                    intArray[i] = 0;
+                }
+            }
+            return intArray;
+        }
+
         private void DisableFieldsWithFixedNumbers()
         {
             var sudokuIntArray = sudokuManager.GetSudokuIntArray();
