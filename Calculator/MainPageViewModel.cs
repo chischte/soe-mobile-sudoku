@@ -18,6 +18,7 @@ namespace Calculator
             AssignValuesToFields();
             DisableFieldsWithFixedNumbers();
         }
+
         private void AssignValuesToFields()
         {
             var sudokuIntArray = sudokuManager.GetSudokuIntArray();
@@ -25,6 +26,17 @@ namespace Calculator
             Field02 = (sudokuIntArray[1] == 0) ? "" : sudokuIntArray[1].ToString();
             Field03 = (sudokuIntArray[2] == 0) ? "" : sudokuIntArray[2].ToString();
             Field04 = (sudokuIntArray[3] == 0) ? "" : sudokuIntArray[3].ToString();
+        }
+
+        private int[] GetIntArrayFromFields()
+        {
+            int[] intArrayFromFields = new int[NumberOfFields];
+            intArrayFromFields[0] = (Field01.Equals("") ? 0 : int.Parse(Field01));
+            intArrayFromFields[1] = (Field02.Equals("") ? 0 : int.Parse(Field02));
+            intArrayFromFields[2] = (Field03.Equals("") ? 0 : int.Parse(Field03));
+            intArrayFromFields[3] = (Field04.Equals("") ? 0 : int.Parse(Field04));
+
+            return intArrayFromFields;
         }
         private void DisableFieldsWithFixedNumbers()
         {
@@ -130,7 +142,7 @@ namespace Calculator
         }
         private void Check(string commandString)
         {
-
+            sudokuManager.CheckSudokuIntArray(GetIntArrayFromFields());
         }
         #endregion
     }

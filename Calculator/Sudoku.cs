@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Text;
 
 namespace Calculator
@@ -15,7 +16,16 @@ namespace Calculator
 
         public int[] GetSudokuIntArray()
         {
-            return new int[] {9, 0, 0, 8};
+            return new int[] {0, 1, 5, 8};
+        }
+
+        public void CheckSudokuIntArray(int[] sudokuIntArray)
+        {
+            for (int i = 0; i < sudokuIntArray.Length; i++)
+            {
+                var loescher = sudokuIntArray[i];
+            }
+
         }
 
     }
