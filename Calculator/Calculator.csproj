@@ -13,4 +13,10 @@
   <ItemGroup>
     <Folder Include="SudokuStrings\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="teststring.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

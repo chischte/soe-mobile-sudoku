@@ -144,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9"/>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +153,15 @@
       <Name>Calculator</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\SudokuStrings\sudokustring_01_beginner.json" />
+    <Content Include="Assets\SudokuStrings\sudokustring_01_rekursion.json" />
+    <Content Include="Assets\SudokuStrings\sudokustring_02_intermediate.json" />
+    <Content Include="Assets\SudokuStrings\sudokustring_03_advanced.json" />
+    <Content Include="Assets\SudokuStrings\sudokustring_04_expert.json" />
+    <Content Include="Assets\SudokuStrings\sudokustring_test_empty.json" />
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

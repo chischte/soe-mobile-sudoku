@@ -28,6 +28,12 @@ namespace Calculator
 
         }
 
+        public void ParseJson()
+        {
+            SudokParser sudokuParser = new SudokParser();
+            sudokuParser.ConvertJsonToSudokuArray();
+        }
+
     }
 
 

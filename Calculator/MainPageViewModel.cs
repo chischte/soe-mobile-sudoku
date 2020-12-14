@@ -156,7 +156,7 @@ namespace Calculator
         }
         private void Load(string commandString)
         {
-            Field03 = commandString;
+            sudokuManager.ParseJson();
         }
 
         private ICommand _checkButtonCommand;
