@@ -9,14 +9,16 @@ namespace Calculator
     public class SudokuManager
     {
         private SudokuList sudokulist;
+        private SudokuParser sudokuParser;
         public SudokuManager()
         {
             this.sudokulist=new SudokuList();
+            this.sudokuParser=new SudokuParser();
         }
 
         public int[] GetSudokuIntArray()
         {
-            return new int[] {0, 1, 5, 8};
+            return sudokuParser.GetSudokuArrayFromJson();
         }
 
         public void CheckSudokuIntArray(int[] sudokuIntArray)
@@ -30,8 +32,8 @@ namespace Calculator
 
         public void ParseJson()
         {
-            SudokParser sudokuParser = new SudokParser();
-            sudokuParser.ConvertJsonToSudokuArray();
+            SudokuParser sudokuParser = new SudokuParser();
+            sudokuParser.GetSudokuArrayFromJson();
         }
 
     }
