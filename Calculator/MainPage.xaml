@@ -433,25 +433,25 @@
         <Entry
             Grid.Row="1"
             Grid.Column="1"
-            IsEnabled="{Binding FieldIsEnabledArray[0]}"
+            IsEnabled="{Binding IsEnabled01}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field01}" />
         <Entry
             Grid.Row="1"
             Grid.Column="2"
-            IsEnabled="{Binding FieldIsEnabledArray[1]}"
+            IsEnabled="{Binding IsEnabledArray02}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field02}" />
         <Entry
             Grid.Row="2"
             Grid.Column="1"
-            IsEnabled="{Binding FieldIsEnabledArray[2]}"
+            IsEnabled="{Binding IsEnabled03}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field03}" />
         <Entry
             Grid.Row="2"
             Grid.Column="2"
-            IsEnabled="{Binding FieldIsEnabledArray[3]}"
+            IsEnabled="{Binding IsEnabled04}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field04}" />
 

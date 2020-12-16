@@ -29,13 +29,6 @@ namespace Calculator
             }
 
         }
-
-        public void ParseJson()
-        {
-            SudokuParser sudokuParser = new SudokuParser();
-            sudokuParser.GetSudokuArrayFromJson();
-        }
-
     }
 
 

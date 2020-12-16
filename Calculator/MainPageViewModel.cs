@@ -14,12 +14,10 @@ namespace Calculator
         private readonly SudokuManager sudokuManager;
 
         public int NumberOfFields = 81;
-        public string[] FieldIsEnabledArray { get; set; }
         public MainPageViewModel(ICalculator calculator)
         {
             this.sudokuManager = new SudokuManager();
-            AssignValuesToFields(sudokuManager.GetSudokuIntArray());
-            DisableFieldsWithFixedNumbers();
+           
         }
 
         private void AssignValuesToFields(int[] sudokuIntArray)
@@ -70,14 +68,18 @@ namespace Calculator
         private void DisableFieldsWithFixedNumbers()
         {
             var sudokuIntArray = sudokuManager.GetSudokuIntArray();
-            FieldIsEnabledArray = new string[NumberOfFields];
-            for (int i = 0; i < sudokuIntArray.Length; i++)
-            {
-                FieldIsEnabledArray[i] = (sudokuIntArray[i] == 0) ? "true" : "false";
-            }
+                IsEnabled01 = (sudokuIntArray[0] == 0) ? "true" : "false";
+                IsEnabled02 = (sudokuIntArray[1] == 0) ? "true" : "false";
+                IsEnabled03 = (sudokuIntArray[2] == 0) ? "true" : "false";
+                IsEnabled04 = (sudokuIntArray[3] == 0) ? "true" : "false";
         }
 
-        #region INotifyFields
+        private void MakeDuplicatesRed()
+        {
+
+        }
+
+        #region INotifyFieldValues
 
         private string _field01 = string.Empty;
         public string Field01
@@ -142,6 +144,71 @@ namespace Calculator
         }
         #endregion
 
+        #region INotifyFieldEnabled
+
+        private string _isEnabled01 = string.Empty;
+        public string IsEnabled01
+        {
+            get => _isEnabled01;
+            set
+            {
+                if (_isEnabled01 == value) return;
+                _isEnabled01 = value;
+                OnPropertyChanged(nameof(IsEnabled01));
+            }
+        }
+
+        private string _isEnabled02 = string.Empty;
+        public string IsEnabled02
+        {
+            get
+            {
+                return _isEnabled02;
+            }
+            set
+            {
+                if (_isEnabled02 != value)
+                {
+                    _isEnabled02 = value;
+                    OnPropertyChanged(nameof(IsEnabled02));
+                }
+            }
+        }
+
+        private string _isEnabled03 = string.Empty;
+        public string IsEnabled03
+        {
+            get
+            {
+                return _isEnabled03;
+            }
+            set
+            {
+                if (_isEnabled03 != value)
+                {
+                    _isEnabled03 = value;
+                    OnPropertyChanged(nameof(IsEnabled03));
+                }
+            }
+        }
+        private string _isEnabled04 = string.Empty;
+        public string IsEnabled04
+        {
+            get
+            {
+                return _isEnabled04;
+            }
+            set
+            {
+                if (_isEnabled04 != value)
+                {
+                    _isEnabled04 = value;
+                    OnPropertyChanged(nameof(IsEnabled04));
+                }
+            }
+        }
+        #endregion
+
         #region ICommandButtons
 
         private ICommand _loadButtonCommand;
@@ -156,7 +223,9 @@ namespace Calculator
         }
         private void Load(string commandString)
         {
-            sudokuManager.ParseJson();
+            DisableFieldsWithFixedNumbers();
+            AssignValuesToFields(sudokuManager.GetSudokuIntArray());
+            
         }
 
         private ICommand _checkButtonCommand;
