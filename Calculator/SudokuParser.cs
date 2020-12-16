@@ -20,8 +20,9 @@ namespace Calculator
 public class SudokuParser
 {
     static int sudokuSquareLength = 9;
-    static int sudokuNumberOfFields = 81;
-    private int[] sudokuArray = new int[sudokuNumberOfFields];
+    const int SudokuNumberOfFields = 81;
+
+    private int[] sudokuArray = new int[SudokuNumberOfFields];
 
     public int[] GetSudokuArrayFromJson()
     {
@@ -34,7 +35,7 @@ public class SudokuParser
 
         string puzzleString = (string)token.SelectToken("puzzle");
 
-        for (int i = 0; i < sudokuNumberOfFields; i++)
+        for (int i = 0; i < SudokuNumberOfFields; i++)
         {
             int.TryParse(puzzleString[i].ToString(), out sudokuArray[i]);
         }

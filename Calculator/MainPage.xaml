@@ -18,7 +18,6 @@
                 <!-- <Setter Property="HorizontalTextAlignment" Value="Center" />-->
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="27" />
-                <Setter Property="TextColor" Value="Black" />
             </Style>
 
         </ResourceDictionary>
@@ -435,25 +434,29 @@
             Grid.Column="1"
             IsEnabled="{Binding IsEnabled01}"
             Style="{StaticResource SudokuField}"
-            Text="{Binding Field01}" />
+            Text="{Binding Field01}"
+            TextColor="{Binding FieldColor01}" />
         <Entry
             Grid.Row="1"
             Grid.Column="2"
             IsEnabled="{Binding IsEnabledArray02}"
             Style="{StaticResource SudokuField}"
-            Text="{Binding Field02}" />
+            Text="{Binding Field02}"
+            TextColor="{Binding FieldColor02}" />
         <Entry
             Grid.Row="2"
             Grid.Column="1"
             IsEnabled="{Binding IsEnabled03}"
             Style="{StaticResource SudokuField}"
-            Text="{Binding Field03}" />
+            Text="{Binding Field03}"
+            TextColor="{Binding FieldColor03}" />
         <Entry
             Grid.Row="2"
             Grid.Column="2"
             IsEnabled="{Binding IsEnabled04}"
             Style="{StaticResource SudokuField}"
-            Text="{Binding Field04}" />
+            Text="{Binding Field04}"
+            TextColor="{Binding FieldColor04}" />
 
         <!--#endregion-->
 

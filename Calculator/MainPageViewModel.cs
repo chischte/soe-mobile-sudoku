@@ -17,7 +17,11 @@ namespace Calculator
         public MainPageViewModel(ICalculator calculator)
         {
             this.sudokuManager = new SudokuManager();
-           
+            FieldColor01 = "black";
+            FieldColor02 = "black";
+            FieldColor03 = "black";
+            FieldColor04 = "black";
+
         }
 
         private void AssignValuesToFields(int[] sudokuIntArray)
@@ -68,15 +72,18 @@ namespace Calculator
         private void DisableFieldsWithFixedNumbers()
         {
             var sudokuIntArray = sudokuManager.GetSudokuIntArray();
-                IsEnabled01 = (sudokuIntArray[0] == 0) ? "true" : "false";
-                IsEnabled02 = (sudokuIntArray[1] == 0) ? "true" : "false";
-                IsEnabled03 = (sudokuIntArray[2] == 0) ? "true" : "false";
-                IsEnabled04 = (sudokuIntArray[3] == 0) ? "true" : "false";
+            IsEnabled01 = (sudokuIntArray[0] == 0) ? "true" : "false";
+            IsEnabled02 = (sudokuIntArray[1] == 0) ? "true" : "false";
+            IsEnabled03 = (sudokuIntArray[2] == 0) ? "true" : "false";
+            IsEnabled04 = (sudokuIntArray[3] == 0) ? "true" : "false";
         }
 
-        private void MakeDuplicatesRed()
+        private void MakeDuplicatesRed(bool[] duplicatesArray)
         {
-
+            FieldColor01 = (duplicatesArray[0] == true) ? "red" : "black";
+            FieldColor02 = (duplicatesArray[1] == true) ? "red" : "black";
+            FieldColor03 = (duplicatesArray[2] == true) ? "red" : "black";
+            FieldColor04 = (duplicatesArray[3] == true) ? "red" : "black";
         }
 
         #region INotifyFieldValues
@@ -209,6 +216,71 @@ namespace Calculator
         }
         #endregion
 
+        #region INotifyFieldColor
+
+        private string _fieldColor01 = string.Empty;
+        public string FieldColor01
+        {
+            get => _fieldColor01;
+            set
+            {
+                if (_fieldColor01 == value) return;
+                _fieldColor01 = value;
+                OnPropertyChanged(nameof(FieldColor01));
+            }
+        }
+
+        private string _fieldColor02 = string.Empty;
+        public string FieldColor02
+        {
+            get
+            {
+                return _fieldColor02;
+            }
+            set
+            {
+                if (_fieldColor02 != value)
+                {
+                    _fieldColor02 = value;
+                    OnPropertyChanged(nameof(FieldColor02));
+                }
+            }
+        }
+
+        private string _fieldColor03 = string.Empty;
+        public string FieldColor03
+        {
+            get
+            {
+                return _fieldColor03;
+            }
+            set
+            {
+                if (_fieldColor03 != value)
+                {
+                    _fieldColor03 = value;
+                    OnPropertyChanged(nameof(FieldColor03));
+                }
+            }
+        }
+        private string _fieldColor04 = string.Empty;
+        public string FieldColor04
+        {
+            get
+            {
+                return _fieldColor04;
+            }
+            set
+            {
+                if (_fieldColor04 != value)
+                {
+                    _fieldColor04 = value;
+                    OnPropertyChanged(nameof(FieldColor04));
+                }
+            }
+        }
+        #endregion
+
         #region ICommandButtons
 
         private ICommand _loadButtonCommand;
@@ -225,7 +297,7 @@ namespace Calculator
         {
             DisableFieldsWithFixedNumbers();
             AssignValuesToFields(sudokuManager.GetSudokuIntArray());
-            
+
         }
 
         private ICommand _checkButtonCommand;
@@ -241,8 +313,11 @@ namespace Calculator
         {
             int[] valuesFromFields = GetIntArrayFromFields();
             AssignValuesToFields(valuesFromFields); // Invalid entries have been removed
-            sudokuManager.CheckSudokuIntArray(valuesFromFields);
+            bool[] duplicatesArray = sudokuManager.CheckSudokuIntArray(valuesFromFields);
+            MakeDuplicatesRed(duplicatesArray);
         }
+
+
         #endregion
     }
 }
