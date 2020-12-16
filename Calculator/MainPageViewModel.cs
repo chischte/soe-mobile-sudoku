@@ -313,7 +313,7 @@ namespace Calculator
         {
             int[] valuesFromFields = GetIntArrayFromFields();
             AssignValuesToFields(valuesFromFields); // Invalid entries have been removed
-            bool[] duplicatesArray = sudokuManager.CheckSudokuIntArray(valuesFromFields);
+            bool[] duplicatesArray = sudokuManager.GetDuplicatesArray(valuesFromFields);
             MakeDuplicatesRed(duplicatesArray);
         }
 

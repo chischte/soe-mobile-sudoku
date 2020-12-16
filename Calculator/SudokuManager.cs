@@ -22,7 +22,7 @@ namespace Calculator
             return sudokuParser.GetSudokuArrayFromJson();
         }
 
-        public bool[] CheckSudokuIntArray(int[] sudokuIntArray)
+        public bool[] GetDuplicatesArray(int[] sudokuIntArray)
         {
             bool[] duplicatesArray = new bool[SudokuNumberOfFields];
 
