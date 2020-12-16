@@ -8,7 +8,7 @@ namespace Calculator
 {
     public class SudokuManager
     {
-       const int SudokuNumberOfFields = 81; 
+        const int SudokuNumberOfFields = 81;
         private SudokuList sudokulist;
         private SudokuParser sudokuParser;
         public SudokuManager()
@@ -30,7 +30,6 @@ namespace Calculator
             {
                 duplicatesArray[j] = CheckForDuplicate(sudokuIntArray[j], sudokuIntArray);
             }
-
             return duplicatesArray;
         }
 
@@ -39,7 +38,7 @@ namespace Calculator
             int duplicateCounter = 0;
             for (int i = 0; i < intArray.Length; i++)
             {
-                if (value !=0 && value == intArray[i])
+                if (value != 0 && value == intArray[i])
                 {
                     duplicateCounter++;
                 }
@@ -47,9 +46,6 @@ namespace Calculator
             return duplicateCounter > 1;
         }
     }
-
-
-
 
     public class SudokuList : ObservableCollection<SudokuField>
     {

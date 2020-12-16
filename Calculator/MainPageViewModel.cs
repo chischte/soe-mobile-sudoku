@@ -17,11 +17,6 @@ namespace Calculator
         public MainPageViewModel(ICalculator calculator)
         {
             this.sudokuManager = new SudokuManager();
-            FieldColor01 = "black";
-            FieldColor02 = "black";
-            FieldColor03 = "black";
-            FieldColor04 = "black";
-
         }
 
         private void AssignValuesToFields(int[] sudokuIntArray)
@@ -218,7 +213,7 @@ namespace Calculator
 
         #region INotifyFieldColor
 
-        private string _fieldColor01 = string.Empty;
+        private string _fieldColor01 = "black";
         public string FieldColor01
         {
             get => _fieldColor01;
@@ -230,7 +225,7 @@ namespace Calculator
             }
         }
 
-        private string _fieldColor02 = string.Empty;
+        private string _fieldColor02 = "black";
         public string FieldColor02
         {
             get
@@ -247,7 +242,7 @@ namespace Calculator
             }
         }
 
-        private string _fieldColor03 = string.Empty;
+        private string _fieldColor03 = "black";
         public string FieldColor03
         {
             get
@@ -263,7 +258,7 @@ namespace Calculator
                 }
             }
         }
-        private string _fieldColor04 = string.Empty;
+        private string _fieldColor04 = "black";
         public string FieldColor04
         {
             get
