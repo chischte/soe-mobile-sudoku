@@ -1,4 +1,7 @@
 ﻿using System;
+using SudokuApp.Model;
+using SudokuApp.view;
+using SudokuApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

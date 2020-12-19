@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
-namespace SudokuApp
+namespace SudokuApp.ViewModel
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
     {

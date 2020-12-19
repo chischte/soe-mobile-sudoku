@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.ObjectModel;
+using SudokuApp.SudokuProvider;
 
-namespace SudokuApp
+namespace SudokuApp.Model
 {
     public class SudokuManager:ISudokuManager
     {

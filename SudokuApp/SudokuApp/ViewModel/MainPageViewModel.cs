@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows.Input;
+using SudokuApp.Model;
 using Xamarin.Forms;
 
-namespace SudokuApp
+namespace SudokuApp.ViewModel
 {
     public class MainPageViewModel : ViewModelBase
     {
