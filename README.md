@@ -1,1 +1,0 @@
-soe-mobile-sudoku
