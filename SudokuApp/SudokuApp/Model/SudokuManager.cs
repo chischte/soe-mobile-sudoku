@@ -7,31 +7,44 @@ namespace SudokuApp.Model
 {
     public class SudokuManager : ISudokuManager
     {
+        // The SudokuManager works internally with integer arrays
+        // It gets string arrays from the view model an
+        // It returns string array from the view model
+        // From the sudoku parser it gets an integer array
+
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        const int SudokuNumberOfFields = 4;
+        const int NumberOfSudokuFields = 4;
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         private SudokuParser sudokuParser;
+
         public SudokuManager()
         {
             this.sudokuParser = new SudokuParser();
         }
 
-        public int[] GetSudokuIntArray()
+        #region public methods -------------------------------------------------
+
+        public string[] GetNewSudokuStringArray()
         {
-            return sudokuParser.GetSudokuArrayFromJson();
+            int[] sudokuIntArray = sudokuParser.GetSudokuArrayFromJson();
+            return ConvertIntToStringArray(sudokuIntArray);
         }
 
-
-        // if number of empty fields = 0
-        // if number of duplicates = 0
-        //-make all fields green
-
-        public FieldColor[] GetFieldColorArray(int[] sudokuIntArray)
+        public string[] GetCheckedStringArray(string[] sudokuStringArray)
         {
-            FieldColor[] sudokuFieldColorArray = new FieldColor[SudokuNumberOfFields];
-            bool sudokuHasEmptyFields = CheckForEmptyFields(sudokuIntArray);
+            int[] sudokuIntArray = ConvertStringToIntArray(sudokuStringArray);
+            sudokuIntArray = RemoveInvalidEntries(sudokuIntArray);
+            return ConvertIntToStringArray(sudokuIntArray);
+        }
+        public FieldColor[] GetFieldColorArray(string[] sudokuStringArray)
+        {
+            int[] sudokuIntArray = ConvertStringToIntArray(sudokuStringArray);
+            FieldColor[] sudokuFieldColorArray = new FieldColor[NumberOfSudokuFields];
+
+            bool sudokuHasEmptyFields = CheckSudokuForEmptyFields(sudokuIntArray);
             bool sudokuHasDuplicates = CheckSudokuForDuplicates(sudokuIntArray);
 
             if (!sudokuHasEmptyFields && !sudokuHasDuplicates)
@@ -46,6 +59,70 @@ namespace SudokuApp.Model
             }
             return sudokuFieldColorArray;
         }
+        #endregion
+
+        #region array conversion -----------------------------------------------
+        private string[] ConvertIntToStringArray(int[] sudokuIntArray)
+        {
+            string[] sudokuStringArray = new string[NumberOfSudokuFields];
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //for (int i = 0; i < sudokuIntArray.Length; i++)
+            for (int i = 0; i < 4; i++)
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            {
+                sudokuStringArray[i] = sudokuIntArray[i].ToString();
+            }
+            sudokuStringArray = RemoveZerosFromStringArray(sudokuStringArray);
+            return sudokuStringArray;
+        }
+
+        private string[] RemoveZerosFromStringArray(string[] sudokuStringArray)
+        {
+            for (int i = 0; i < sudokuStringArray.Length; i++)
+            {
+                sudokuStringArray[i] = sudokuStringArray[i].Equals("0") ? "" : sudokuStringArray[i];
+            }
+            return sudokuStringArray;
+        }
+
+        private int[] ConvertStringToIntArray(string[] sudokuStringArray)
+        {
+            int[] sudokuIntArray = new int[NumberOfSudokuFields];
+            for (int i = 0; i < sudokuStringArray.Length; i++)
+            {
+                int.TryParse(sudokuStringArray[i], out sudokuIntArray[i]);
+            }
+            sudokuIntArray = RemoveInvalidEntries(sudokuIntArray);
+            return sudokuIntArray;
+        }
+        private int[] RemoveInvalidEntries(int[] intArray)
+        {
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                if (intArray[i] < 1 || intArray[i] > 9)
+                {
+                    intArray[i] = 0;
+                }
+            }
+            return intArray;
+        }
+        #endregion
+
+        #region check sudoku -------------------------------------------
+        private bool CheckSudokuForEmptyFields(int[] sudokuIntArray)
+        {
+            bool hasEmptyFields = false;
+            foreach (var fieldValue in sudokuIntArray)
+            {
+                if (fieldValue == 0)
+                {
+                    hasEmptyFields = true;
+                }
+            }
+            return hasEmptyFields;
+        }
 
         private bool CheckSudokuForDuplicates(int[] sudokuIntArray)
         {
@@ -56,7 +133,7 @@ namespace SudokuApp.Model
 
         private bool[] GetDuplicatesArray(int[] sudokuIntArray)
         {
-            bool[] duplicatesArray = new bool[SudokuNumberOfFields];
+            bool[] duplicatesArray = new bool[NumberOfSudokuFields];
 
             for (int j = 0; j < sudokuIntArray.Length; j++)
             {
@@ -64,12 +141,13 @@ namespace SudokuApp.Model
             }
             return duplicatesArray;
         }
-        private bool CheckFieldValueForDuplicate(int value, int[] intArray)
+
+        private bool CheckFieldValueForDuplicate(int currentValue, int[] intArray)
         {
             int duplicateCounter = 0;
-            for (int i = 0; i < intArray.Length; i++)
+            foreach (var fieldValue in intArray)
             {
-                if (value != 0 && value == intArray[i])
+                if (currentValue != 0 && currentValue == fieldValue)
                 {
                     duplicateCounter++;
                 }
@@ -77,25 +155,12 @@ namespace SudokuApp.Model
             return duplicateCounter > 1;
         }
 
-        private bool CheckForEmptyFields(int[] sudokuIntArray)
-        {
-            bool hasEmptyFields = false;
-            for (int i = 0; i < sudokuIntArray.Length; i++)
-            {
-                if (sudokuIntArray[i] == 0)
-                {
-                    hasEmptyFields = true;
-                }
-            }
-            return hasEmptyFields;
-        }
-
         private bool CheckDuplicateArrayForDuplicates(bool[] duplicatesArray)
         {
             bool duplicateArrayHasDuplicates = false;
-            for (int i = 0; i < duplicatesArray.Length; i++)
+            foreach (var fieldValue in duplicatesArray)
             {
-                if (duplicatesArray[i])
+                if (fieldValue)
                 {
                     duplicateArrayHasDuplicates = true;
                 }
@@ -103,9 +168,13 @@ namespace SudokuApp.Model
             return duplicateArrayHasDuplicates;
         }
 
+        #endregion
+
+        #region assign colors --------------------------------------------------
+        
         private FieldColor[] MakeDuplicatesRed(int[] sudokuIntArray)
         {
-            FieldColor[] fieldColorArray = new FieldColor[SudokuNumberOfFields];
+            FieldColor[] fieldColorArray = new FieldColor[NumberOfSudokuFields];
             bool[] duplicateArray = GetDuplicatesArray(sudokuIntArray);
 
             for (int i = 0; i < duplicateArray.Length; i++)
@@ -117,55 +186,13 @@ namespace SudokuApp.Model
 
         private FieldColor[] MakeAllFieldsGreen()
         {
-            FieldColor[] fieldColorArray = new FieldColor[SudokuNumberOfFields];
+            FieldColor[] fieldColorArray = new FieldColor[NumberOfSudokuFields];
             for (int i = 0; i < fieldColorArray.Length; i++)
             {
                 fieldColorArray[i] = FieldColor.Green;
             }
             return fieldColorArray;
         }
-    }
-
-    public class SudokuList : ObservableCollection<SudokuField>
-    {
-        public SudokuList() : base()
-        {
-            Add(new SudokuField(1, 99, "88"));
-            Add(new SudokuField(2, 130, "99"));
-            Add(new SudokuField(3, 130, "99"));
-            Add(new SudokuField(4, 0, "99"));
-        }
-    }
-
-    public class SudokuField
-    {
-        private int fieldNumber;
-        private int fieldValue;
-        private string fieldValueString;
-
-        public SudokuField(int fieldNumber, int fieldValue, string fieldValueString)
-        {
-            this.fieldNumber = fieldNumber;
-            this.fieldValue = fieldValue;
-            this.fieldValueString = fieldValueString;
-        }
-
-        public int FieldNumber
-        {
-            get { return fieldNumber; }
-            set { fieldNumber = value; }
-        }
-
-        public int FieldValue
-        {
-            get { return fieldValue; }
-            set { fieldValue = value; }
-        }
-
-        public string FieldValueString
-        {
-            get { return fieldValueString; }
-            set { fieldValueString = value; }
-        }
+        #endregion
     }
 }

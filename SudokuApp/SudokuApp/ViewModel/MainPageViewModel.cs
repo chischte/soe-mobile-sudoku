@@ -13,7 +13,7 @@ namespace SudokuApp.ViewModel
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        public int NumberOfFields = 4;
+        const int NumberOfSudokuFields = 4;
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public MainPageViewModel(ISudokuManager sudokuManager)
@@ -21,17 +21,18 @@ namespace SudokuApp.ViewModel
             this.sudokuManager = sudokuManager;
         }
 
-        private void AssignValuesToFields(int[] sudokuIntArray)
+        private void AssignValuesToFields(string[] sudokuStringArray)
         {
-            Field01 = (sudokuIntArray[0] == 0) ? "" : sudokuIntArray[0].ToString();
-            Field02 = (sudokuIntArray[1] == 0) ? "" : sudokuIntArray[1].ToString();
-            Field03 = (sudokuIntArray[2] == 0) ? "" : sudokuIntArray[2].ToString();
-            Field04 = (sudokuIntArray[3] == 0) ? "" : sudokuIntArray[3].ToString();
+            Field01 = sudokuStringArray[0];
+            Field02 = sudokuStringArray[1];
+            Field03 = sudokuStringArray[2];
+            Field04 = sudokuStringArray[3];
+            //Field04 = (sudokuStringArray[3] == 0) ? "" : sudokuStringArray[3].ToString();
         }
 
         private string[] GetStringArrayFromFields()
         {
-            string[] stringArrayFromFields = new string[NumberOfFields];
+            string[] stringArrayFromFields = new string[NumberOfSudokuFields];
             stringArrayFromFields[0] = Field01;
             stringArrayFromFields[1] = Field02;
             stringArrayFromFields[2] = Field03;
@@ -40,39 +41,13 @@ namespace SudokuApp.ViewModel
             return stringArrayFromFields;
         }
 
-        private int[] GetIntArrayFromFields()
+        private void DisableFieldsWithFixedNumbers(string[] sudokuStringArray)
         {
-            int[] intArray = new int[NumberOfFields];
-            string[] stringArray = GetStringArrayFromFields();
-
-            for (int i = 0; i < stringArray.Length; i++)
-            {
-                int.TryParse(stringArray[i], out intArray[i]);
-            }
-            intArray = RemoveInvalidEntries(intArray);
-            return intArray;
-        }
-
-        private int[] RemoveInvalidEntries(int[] intArray)
-        {
-            int[] validFieldValues = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            for (int i = 0; i < intArray.Length; i++)
-            {
-                if (!validFieldValues.Contains(intArray[i]))
-                {
-                    intArray[i] = 0;
-                }
-            }
-            return intArray;
-        }
-
-        private void DisableFieldsWithFixedNumbers()
-        {
-            var sudokuIntArray = sudokuManager.GetSudokuIntArray();
-            IsEnabled01 = (sudokuIntArray[0] == 0) ? "true" : "false";
-            IsEnabled02 = (sudokuIntArray[1] == 0) ? "true" : "false";
-            IsEnabled03 = (sudokuIntArray[2] == 0) ? "true" : "false";
-            IsEnabled04 = (sudokuIntArray[3] == 0) ? "true" : "false";
+            IsEnabled01 = String.IsNullOrEmpty(sudokuStringArray[0]) ? "true" : "false";
+            IsEnabled02 = String.IsNullOrEmpty(sudokuStringArray[1]) ? "true" : "false";
+            IsEnabled03 = String.IsNullOrEmpty(sudokuStringArray[2]) ? "true" : "false";
+            IsEnabled04 = String.IsNullOrEmpty(sudokuStringArray[3]) ? "true" : "false";
+            //IsEnabled04 = (sudokuStringArray[3] == "") ? "true" : "false";
         }
 
         private void SetFieldColors(FieldColor[] fieldColorArray)
@@ -293,9 +268,9 @@ namespace SudokuApp.ViewModel
         }
         private void Load(string commandString)
         {
-            DisableFieldsWithFixedNumbers();
-            AssignValuesToFields(sudokuManager.GetSudokuIntArray());
-
+            string[] sudokuStringArray = sudokuManager.GetNewSudokuStringArray();
+            DisableFieldsWithFixedNumbers(sudokuStringArray);
+            AssignValuesToFields(sudokuStringArray);
         }
 
         private ICommand _checkButtonCommand;
@@ -309,13 +284,12 @@ namespace SudokuApp.ViewModel
         }
         private void CheckAndRefresh(string commandString)
         {
-            int[] valuesFromFields = GetIntArrayFromFields();
-            AssignValuesToFields(valuesFromFields); // Invalid entries have been removed
-            FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(valuesFromFields);
+            
+            string[] checkedFieldValues = sudokuManager.GetCheckedStringArray(GetStringArrayFromFields());
+            AssignValuesToFields(checkedFieldValues); // Invalid entries have been removed
+            FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(checkedFieldValues);
             SetFieldColors(fieldColorArray);
         }
-
-
         #endregion
     }
 }
