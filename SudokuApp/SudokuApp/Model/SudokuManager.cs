@@ -117,6 +117,9 @@ namespace SudokuApp.Model
             return hasEmptyFields;
         }
 
+
+
+
         private bool CheckSudokuForDuplicates(int[] sudokuIntArray)
         {
             bool[] duplicatesArray = GetDuplicatesArray(sudokuIntArray);
@@ -130,24 +133,26 @@ namespace SudokuApp.Model
 
             for (int j = 0; j < sudokuIntArray.Length; j++)
             {
-                duplicatesArray[j] = CheckFieldValueForDuplicate(sudokuIntArray[j], sudokuIntArray);
+                if (sudokuIntArray[j] != 0)
+                {
+                    if (CheckFieldForColumnDuplicate(j, sudokuIntArray))
+                    {
+                        duplicatesArray[j] = true;
+                    }
+
+                    if (CheckFieldForRowDuplicate(j, sudokuIntArray))
+                    {
+                        duplicatesArray[j] = true;
+                    }
+
+                    if (CheckFieldForSectorDuplicate(j, sudokuIntArray))
+                    {
+                        duplicatesArray[j] = true;
+                    }
+                }
             }
             return duplicatesArray;
         }
-
-
-       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        public void DebugFunction()
-        {
-            for (int i = 0; i < 81; i++)
-            {
-                GetSectorNumberOfField(i);
-            }
-        }
-       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 
         private int GetRowNumberOfField(int fieldArrayIndex)
         {
@@ -200,14 +205,53 @@ namespace SudokuApp.Model
             return sectorNumber;
         }
 
-        private bool CheckFieldValueForDuplicate(int currentValue, int[] intArray)
+        private bool CheckFieldForColumnDuplicate(int currentFieldIndex, int[] intArray)
         {
             int duplicateCounter = 0;
-            foreach (var fieldValue in intArray)
+            int currentValue = intArray[currentFieldIndex];
+            int columnNumberOfCurrentField = GetColumnNumberOfField(currentFieldIndex);
+            for (int i = 0; i < intArray.Length; i++)
             {
-                if (currentValue != 0 && currentValue == fieldValue)
+                if (GetColumnNumberOfField(i) == columnNumberOfCurrentField)
                 {
-                    duplicateCounter++;
+                    if (intArray[i] == currentValue)
+                    {
+                        duplicateCounter++;
+                    }
+                }
+            }
+            return duplicateCounter > 1;
+        }
+        private bool CheckFieldForRowDuplicate(int currentFieldIndex, int[] intArray)
+        {
+            int duplicateCounter = 0;
+            int currentValue = intArray[currentFieldIndex];
+            int rowNumberOfCurrentField = GetRowNumberOfField(currentFieldIndex);
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                if (GetRowNumberOfField(i) == rowNumberOfCurrentField)
+                {
+                    if (intArray[i] == currentValue)
+                    {
+                        duplicateCounter++;
+                    }
+                }
+            }
+            return duplicateCounter > 1;
+        }
+        private bool CheckFieldForSectorDuplicate(int currentFieldIndex, int[] intArray)
+        {
+            int duplicateCounter = 0;
+            int currentValue = intArray[currentFieldIndex];
+            int sectorNumberOfCurrentField = GetSectorNumberOfField(currentFieldIndex);
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                if (GetSectorNumberOfField(i) == sectorNumberOfCurrentField)
+                {
+                    if (intArray[i] == currentValue)
+                    {
+                        duplicateCounter++;
+                    }
                 }
             }
             return duplicateCounter > 1;

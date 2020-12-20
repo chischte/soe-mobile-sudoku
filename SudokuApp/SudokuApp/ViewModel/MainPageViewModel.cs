@@ -3343,7 +3343,7 @@ namespace SudokuApp.ViewModel
 
         private void Reload(string commandString)
         {
-            sudokuManager.Loescher();
+            
         }
 
         #endregion
