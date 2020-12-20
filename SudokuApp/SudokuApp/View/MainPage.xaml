@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SudokuApp.view.MainPage">
+<ContentPage
+    x:Class="SudokuApp.view.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -442,19 +443,551 @@
             Text="{Binding Field02}"
             TextColor="{Binding FieldColor02}" />
         <Entry
-            Grid.Row="2"
-            Grid.Column="1"
+            Grid.Row="1"
+            Grid.Column="3"
             IsEnabled="{Binding IsEnabled03}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field03}"
             TextColor="{Binding FieldColor03}" />
         <Entry
-            Grid.Row="2"
-            Grid.Column="2"
+            Grid.Row="1"
+            Grid.Column="5"
             IsEnabled="{Binding IsEnabled04}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field04}"
             TextColor="{Binding FieldColor04}" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="6"
+            IsEnabled="{Binding IsEnabled05}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field05}"
+            TextColor="{Binding FieldColor05}" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="7"
+            IsEnabled="{Binding IsEnabled06}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field06}"
+            TextColor="{Binding FieldColor06}" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="9"
+            IsEnabled="{Binding IsEnabled07}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field07}"
+            TextColor="{Binding FieldColor07}" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="10"
+            IsEnabled="{Binding IsEnabled08}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field08}"
+            TextColor="{Binding FieldColor08}" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="11"
+            IsEnabled="{Binding IsEnabled09}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field09}"
+            TextColor="{Binding FieldColor09}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="1"
+            IsEnabled="{Binding IsEnabled10}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field10}"
+            TextColor="{Binding FieldColor10}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="2"
+            IsEnabled="{Binding IsEnabled11}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field11}"
+            TextColor="{Binding FieldColor11}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="3"
+            IsEnabled="{Binding IsEnabled12}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field12}"
+            TextColor="{Binding FieldColor12}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="5"
+            IsEnabled="{Binding IsEnabled13}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field13}"
+            TextColor="{Binding FieldColor13}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="6"
+            IsEnabled="{Binding IsEnabled14}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field14}"
+            TextColor="{Binding FieldColor14}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="7"
+            IsEnabled="{Binding IsEnabled15}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field15}"
+            TextColor="{Binding FieldColor15}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="9"
+            IsEnabled="{Binding IsEnabled16}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field16}"
+            TextColor="{Binding FieldColor16}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="10"
+            IsEnabled="{Binding IsEnabled17}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field17}"
+            TextColor="{Binding FieldColor17}" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="11"
+            IsEnabled="{Binding IsEnabled18}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field18}"
+            TextColor="{Binding FieldColor18}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="1"
+            IsEnabled="{Binding IsEnabled19}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field19}"
+            TextColor="{Binding FieldColor19}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="2"
+            IsEnabled="{Binding IsEnabled20}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field20}"
+            TextColor="{Binding FieldColor20}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="3"
+            IsEnabled="{Binding IsEnabled21}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field21}"
+            TextColor="{Binding FieldColor21}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="5"
+            IsEnabled="{Binding IsEnabled22}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field22}"
+            TextColor="{Binding FieldColor22}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="6"
+            IsEnabled="{Binding IsEnabled23}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field23}"
+            TextColor="{Binding FieldColor23}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="7"
+            IsEnabled="{Binding IsEnabled24}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field24}"
+            TextColor="{Binding FieldColor24}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="9"
+            IsEnabled="{Binding IsEnabled25}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field25}"
+            TextColor="{Binding FieldColor25}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="10"
+            IsEnabled="{Binding IsEnabled26}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field26}"
+            TextColor="{Binding FieldColor26}" />
+        <Entry
+            Grid.Row="3"
+            Grid.Column="11"
+            IsEnabled="{Binding IsEnabled27}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field27}"
+            TextColor="{Binding FieldColor27}" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="1"
+            IsEnabled="{Binding IsEnabled28}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field28}"
+            TextColor="{Binding FieldColor28}" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="2"
+            IsEnabled="{Binding IsEnabled29}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field29}"
+            TextColor="{Binding FieldColor29}" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="3"
+            IsEnabled="{Binding IsEnabled30}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field30}"
+            TextColor="{Binding FieldColor30}" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="5"
+            IsEnabled="{Binding IsEnabled31}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field31}"
+            TextColor="{Binding FieldColor31}" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="6"
+            IsEnabled="{Binding IsEnabled32}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field32}"
+            TextColor="{Binding FieldColor32}" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="7"
+            IsEnabled="{Binding IsEnabled33}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field33}"
+            TextColor="{Binding FieldColor33}" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="9"
+            IsEnabled="{Binding IsEnabled34}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field34}"
+            TextColor="{Binding FieldColor34}" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="10"
+            IsEnabled="{Binding IsEnabled35}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field35}"
+            TextColor="{Binding FieldColor35}" />
+        <Entry
+            Grid.Row="5"
+            Grid.Column="11"
+            IsEnabled="{Binding IsEnabled36}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field36}"
+            TextColor="{Binding FieldColor36}" />
+        <Entry
+            Grid.Row="6"
+            Grid.Column="1"
+            IsEnabled="{Binding IsEnabled37}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field37}"
+            TextColor="{Binding FieldColor37}" />
+        <Entry
+            Grid.Row="6"
+            Grid.Column="2"
+            IsEnabled="{Binding IsEnabled38}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field38}"
+            TextColor="{Binding FieldColor38}" />
+        <Entry
+            Grid.Row="6"
+            Grid.Column="3"
+            IsEnabled="{Binding IsEnabled39}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field39}"
+            TextColor="{Binding FieldColor39}" />
+        <Entry
+            Grid.Row="6"
+            Grid.Column="5"
+            IsEnabled="{Binding IsEnabled40}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field40}"
+            TextColor="{Binding FieldColor40}" />
+        <Entry
+            Grid.Row="6"
+            Grid.Column="6"
+            IsEnabled="{Binding IsEnabled41}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field41}"
+            TextColor="{Binding FieldColor41}" />
+        <Entry
+            Grid.Row="6"
+            Grid.Column="7"
+            IsEnabled="{Binding IsEnabled42}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field42}"
+            TextColor="{Binding FieldColor42}" />
+        <Entry
+            Grid.Row="6"
+            Grid.Column="9"
+            IsEnabled="{Binding IsEnabled43}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field43}"
+            TextColor="{Binding FieldColor43}" />
+        <Entry
+            Grid.Row="6"
+            Grid.Column="10"
+            IsEnabled="{Binding IsEnabled44}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field44}"
+            TextColor="{Binding FieldColor44}" />
+        <Entry
+            Grid.Row="6"
+            Grid.Column="11"
+            IsEnabled="{Binding IsEnabled45}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field45}"
+            TextColor="{Binding FieldColor45}" />
+        <Entry
+            Grid.Row="7"
+            Grid.Column="1"
+            IsEnabled="{Binding IsEnabled46}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field46}"
+            TextColor="{Binding FieldColor46}" />
+        <Entry
+            Grid.Row="7"
+            Grid.Column="2"
+            IsEnabled="{Binding IsEnabled47}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field47}"
+            TextColor="{Binding FieldColor47}" />
+        <Entry
+            Grid.Row="7"
+            Grid.Column="3"
+            IsEnabled="{Binding IsEnabled48}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field48}"
+            TextColor="{Binding FieldColor48}" />
+        <Entry
+            Grid.Row="7"
+            Grid.Column="5"
+            IsEnabled="{Binding IsEnabled49}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field49}"
+            TextColor="{Binding FieldColor49}" />
+        <Entry
+            Grid.Row="7"
+            Grid.Column="6"
+            IsEnabled="{Binding IsEnabled50}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field50}"
+            TextColor="{Binding FieldColor50}" />
+        <Entry
+            Grid.Row="7"
+            Grid.Column="7"
+            IsEnabled="{Binding IsEnabled51}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field51}"
+            TextColor="{Binding FieldColor51}" />
+        <Entry
+            Grid.Row="7"
+            Grid.Column="9"
+            IsEnabled="{Binding IsEnabled52}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field52}"
+            TextColor="{Binding FieldColor52}" />
+        <Entry
+            Grid.Row="7"
+            Grid.Column="10"
+            IsEnabled="{Binding IsEnabled53}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field53}"
+            TextColor="{Binding FieldColor53}" />
+        <Entry
+            Grid.Row="7"
+            Grid.Column="11"
+            IsEnabled="{Binding IsEnabled54}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field54}"
+            TextColor="{Binding FieldColor54}" />
+        <Entry
+            Grid.Row="9"
+            Grid.Column="1"
+            IsEnabled="{Binding IsEnabled55}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field55}"
+            TextColor="{Binding FieldColor55}" />
+        <Entry
+            Grid.Row="9"
+            Grid.Column="2"
+            IsEnabled="{Binding IsEnabled56}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field56}"
+            TextColor="{Binding FieldColor56}" />
+        <Entry
+            Grid.Row="9"
+            Grid.Column="3"
+            IsEnabled="{Binding IsEnabled57}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field57}"
+            TextColor="{Binding FieldColor57}" />
+        <Entry
+            Grid.Row="9"
+            Grid.Column="5"
+            IsEnabled="{Binding IsEnabled58}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field58}"
+            TextColor="{Binding FieldColor58}" />
+        <Entry
+            Grid.Row="9"
+            Grid.Column="6"
+            IsEnabled="{Binding IsEnabled59}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field59}"
+            TextColor="{Binding FieldColor59}" />
+        <Entry
+            Grid.Row="9"
+            Grid.Column="7"
+            IsEnabled="{Binding IsEnabled60}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field60}"
+            TextColor="{Binding FieldColor60}" />
+        <Entry
+            Grid.Row="9"
+            Grid.Column="9"
+            IsEnabled="{Binding IsEnabled61}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field61}"
+            TextColor="{Binding FieldColor61}" />
+        <Entry
+            Grid.Row="9"
+            Grid.Column="10"
+            IsEnabled="{Binding IsEnabled62}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field62}"
+            TextColor="{Binding FieldColor62}" />
+        <Entry
+            Grid.Row="9"
+            Grid.Column="11"
+            IsEnabled="{Binding IsEnabled63}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field63}"
+            TextColor="{Binding FieldColor63}" />
+        <Entry
+            Grid.Row="10"
+            Grid.Column="1"
+            IsEnabled="{Binding IsEnabled64}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field64}"
+            TextColor="{Binding FieldColor64}" />
+        <Entry
+            Grid.Row="10"
+            Grid.Column="2"
+            IsEnabled="{Binding IsEnabled65}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field65}"
+            TextColor="{Binding FieldColor65}" />
+        <Entry
+            Grid.Row="10"
+            Grid.Column="3"
+            IsEnabled="{Binding IsEnabled66}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field66}"
+            TextColor="{Binding FieldColor67}" />
+        <Entry
+            Grid.Row="10"
+            Grid.Column="5"
+            IsEnabled="{Binding IsEnabled68}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field68}"
+            TextColor="{Binding FieldColor68}" />
+        <Entry
+            Grid.Row="10"
+            Grid.Column="6"
+            IsEnabled="{Binding IsEnabled69}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field69}"
+            TextColor="{Binding FieldColor69}" />
+        <Entry
+            Grid.Row="10"
+            Grid.Column="7"
+            IsEnabled="{Binding IsEnabled70}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field70}"
+            TextColor="{Binding FieldColor70}" />
+        <Entry
+            Grid.Row="10"
+            Grid.Column="9"
+            IsEnabled="{Binding IsEnabled71}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field71}"
+            TextColor="{Binding FieldColor71}" />
+        <Entry
+            Grid.Row="10"
+            Grid.Column="10"
+            IsEnabled="{Binding IsEnabled72}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field72}"
+            TextColor="{Binding FieldColor72}" />
+        <Entry
+            Grid.Row="11"
+            Grid.Column="1"
+            IsEnabled="{Binding IsEnabled73}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field73}"
+            TextColor="{Binding FieldColor73}" />
+        <Entry
+            Grid.Row="11"
+            Grid.Column="2"
+            IsEnabled="{Binding IsEnabled74}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field74}"
+            TextColor="{Binding FieldColor74}" />
+        <Entry
+            Grid.Row="11"
+            Grid.Column="3"
+            IsEnabled="{Binding IsEnabled75}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field75}"
+            TextColor="{Binding FieldColor75}" />
+        <Entry
+            Grid.Row="11"
+            Grid.Column="5"
+            IsEnabled="{Binding IsEnabled76}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field76}"
+            TextColor="{Binding FieldColor76}" />
+        <Entry
+            Grid.Row="11"
+            Grid.Column="6"
+            IsEnabled="{Binding IsEnabled77}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field77}"
+            TextColor="{Binding FieldColor77}" />
+        <Entry
+            Grid.Row="11"
+            Grid.Column="7"
+            IsEnabled="{Binding IsEnabled78}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field78}"
+            TextColor="{Binding FieldColor78}" />
+        <Entry
+            Grid.Row="11"
+            Grid.Column="9"
+            IsEnabled="{Binding IsEnabled79}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field79}"
+            TextColor="{Binding FieldColor79}" />
+        <Entry
+            Grid.Row="11"
+            Grid.Column="10"
+            IsEnabled="{Binding IsEnabled80}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field80}"
+            TextColor="{Binding FieldColor80}" />
+        <Entry
+            Grid.Row="11"
+            Grid.Column="11"
+            IsEnabled="{Binding IsEnabled81}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field81}"
+            TextColor="{Binding FieldColor81}" />
 
         <!--#endregion-->
 

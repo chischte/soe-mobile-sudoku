@@ -7,16 +7,12 @@ namespace SudokuApp.Model
 {
     public class SudokuManager : ISudokuManager
     {
-        // The SudokuManager works internally with integer arrays
-        // It gets string arrays from the view model an
-        // It returns string array from the view model
+        // The SudokuManager works internally with integer arrays.
+        // It gets string arrays from the view model.
+        // It returns string and bool arrays from the view model.
         // From the sudoku parser it gets an integer array
 
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        const int NumberOfSudokuFields = 4;
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        const int NumberOfSudokuFields = 81;
 
         private SudokuParser sudokuParser;
 
@@ -65,12 +61,7 @@ namespace SudokuApp.Model
         private string[] ConvertIntToStringArray(int[] sudokuIntArray)
         {
             string[] sudokuStringArray = new string[NumberOfSudokuFields];
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //for (int i = 0; i < sudokuIntArray.Length; i++)
-            for (int i = 0; i < 4; i++)
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            for (int i = 0; i < sudokuIntArray.Length; i++)
             {
                 sudokuStringArray[i] = sudokuIntArray[i].ToString();
             }
