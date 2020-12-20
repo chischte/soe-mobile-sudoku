@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using SudokuApp.Model;
+using SudokuApp.view;
 using Xamarin.Forms;
 
 namespace SudokuApp.ViewModel
@@ -9,7 +11,11 @@ namespace SudokuApp.ViewModel
     {
         private readonly ISudokuManager sudokuManager;
 
-        public int NumberOfFields = 81;
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public int NumberOfFields = 4;
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public MainPageViewModel(ISudokuManager sudokuManager)
         {
             this.sudokuManager = sudokuManager;
@@ -69,12 +75,13 @@ namespace SudokuApp.ViewModel
             IsEnabled04 = (sudokuIntArray[3] == 0) ? "true" : "false";
         }
 
-        private void MakeDuplicatesRed(bool[] duplicatesArray)
+        private void SetFieldColors(FieldColor[] fieldColorArray)
         {
-            FieldColor01 = (duplicatesArray[0] == true) ? "red" : "black";
-            FieldColor02 = (duplicatesArray[1] == true) ? "red" : "black";
-            FieldColor03 = (duplicatesArray[2] == true) ? "red" : "black";
-            FieldColor04 = (duplicatesArray[3] == true) ? "red" : "black";
+            FieldColor01 = Enum.GetName(typeof(FieldColor), fieldColorArray[0]);
+            FieldColor02 = Enum.GetName(typeof(FieldColor), fieldColorArray[1]);
+            FieldColor03 = Enum.GetName(typeof(FieldColor), fieldColorArray[2]);
+            FieldColor04 = Enum.GetName(typeof(FieldColor), fieldColorArray[3]);
+            //FieldColor04 = (fieldColorArray[3] == true) ? "red" : "black";
         }
 
         #region INotifyFieldValues
@@ -304,8 +311,8 @@ namespace SudokuApp.ViewModel
         {
             int[] valuesFromFields = GetIntArrayFromFields();
             AssignValuesToFields(valuesFromFields); // Invalid entries have been removed
-            bool[] duplicatesArray = sudokuManager.GetDuplicatesArray(valuesFromFields);
-            MakeDuplicatesRed(duplicatesArray);
+            FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(valuesFromFields);
+            SetFieldColors(fieldColorArray);
         }
 
 

@@ -1,8 +1,10 @@
-﻿namespace SudokuApp.Model
+﻿using SudokuApp.view;
+
+namespace SudokuApp.Model
 {
     public interface ISudokuManager
     {
         int[] GetSudokuIntArray();
-        bool[] GetDuplicatesArray(int[] sudokuIntArray);
+        FieldColor[] GetFieldColorArray(int[] sudokuIntArray);
     }
 }
