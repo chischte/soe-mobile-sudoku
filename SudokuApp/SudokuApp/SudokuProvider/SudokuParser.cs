@@ -17,7 +17,7 @@ namespace SudokuApp.SudokuProvider
 
         public int[] GetSudokuArrayFromJson()
         {
-            string fileName = @"Assets\SudokuStrings\sudokustring_01_beginner.json";
+            string fileName = @"Assets\SudokuStrings\sudokustring_01_rekursion.json";
 
             StreamReader streamReader = new StreamReader(fileName);
             string jsonString = streamReader.ReadToEnd();

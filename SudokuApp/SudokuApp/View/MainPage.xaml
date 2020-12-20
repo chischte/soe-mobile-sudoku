@@ -438,7 +438,7 @@
         <Entry
             Grid.Row="1"
             Grid.Column="2"
-            IsEnabled="{Binding IsEnabledArray02}"
+            IsEnabled="{Binding IsEnabled02}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field02}"
             TextColor="{Binding FieldColor02}" />
@@ -889,38 +889,45 @@
             IsEnabled="{Binding IsEnabled66}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field66}"
-            TextColor="{Binding FieldColor67}" />
+            TextColor="{Binding FieldColor66}" />
         <Entry
             Grid.Row="10"
             Grid.Column="5"
+            IsEnabled="{Binding IsEnabled67}"
+            Style="{StaticResource SudokuField}"
+            Text="{Binding Field67}"
+            TextColor="{Binding FieldColor67}" />
+        <Entry
+            Grid.Row="10"
+            Grid.Column="6"
             IsEnabled="{Binding IsEnabled68}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field68}"
             TextColor="{Binding FieldColor68}" />
         <Entry
             Grid.Row="10"
-            Grid.Column="6"
+            Grid.Column="7"
             IsEnabled="{Binding IsEnabled69}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field69}"
             TextColor="{Binding FieldColor69}" />
         <Entry
             Grid.Row="10"
-            Grid.Column="7"
+            Grid.Column="9"
             IsEnabled="{Binding IsEnabled70}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field70}"
             TextColor="{Binding FieldColor70}" />
         <Entry
             Grid.Row="10"
-            Grid.Column="9"
+            Grid.Column="10"
             IsEnabled="{Binding IsEnabled71}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field71}"
             TextColor="{Binding FieldColor71}" />
         <Entry
             Grid.Row="10"
-            Grid.Column="10"
+            Grid.Column="11"
             IsEnabled="{Binding IsEnabled72}"
             Style="{StaticResource SudokuField}"
             Text="{Binding Field72}"
