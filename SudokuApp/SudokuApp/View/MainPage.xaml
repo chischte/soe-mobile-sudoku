@@ -1004,7 +1004,6 @@
             Grid.ColumnSpan="3"
             BackgroundColor="Gray"
             Command="{Binding LoadButtonCommand}"
-            CommandParameter="111"
             FontAttributes="Bold"
             FontSize="20"
             Text="LOAD"
@@ -1015,7 +1014,6 @@
             Grid.ColumnSpan="3"
             BackgroundColor="Gray"
             Command="{Binding CheckButtonCommand}"
-            CommandParameter="111"
             FontAttributes="Bold"
             FontSize="20"
             Text="CHECK"
@@ -1025,11 +1023,10 @@
             Grid.Column="9"
             Grid.ColumnSpan="3"
             BackgroundColor="Gray"
-            Command="{Binding ReloadButtonCommand}"
-            CommandParameter="111"
             FontAttributes="Bold"
             FontSize="20"
-            Text="RELOAD"
+            IsEnabled="false"
+            Text="SOLVE"
             VerticalOptions="Center" />
 
     </Grid>

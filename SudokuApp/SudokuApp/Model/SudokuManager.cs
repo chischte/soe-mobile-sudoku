@@ -14,9 +14,9 @@ namespace SudokuApp.Model
         // From the sudoku parser it gets an integer array
 
         const int NumberOfSudokuFields = 81;
-        const int sudokuSquareLength = 9;
+        const int SudokuSquareLength = 9;
 
-        private SudokuParser sudokuParser;
+        private readonly SudokuParser sudokuParser;
 
         public SudokuManager()
         {
@@ -37,10 +37,11 @@ namespace SudokuApp.Model
             sudokuIntArray = RemoveInvalidEntries(sudokuIntArray);
             return ConvertIntToStringArray(sudokuIntArray);
         }
+
         public FieldColor[] GetFieldColorArray(string[] sudokuStringArray)
         {
             int[] sudokuIntArray = ConvertStringToIntArray(sudokuStringArray);
-            FieldColor[] sudokuFieldColorArray = new FieldColor[NumberOfSudokuFields];
+            FieldColor[] sudokuFieldColorArray;
 
             bool sudokuHasEmptyFields = CheckSudokuForEmptyFields(sudokuIntArray);
             bool sudokuHasDuplicates = CheckSudokuForDuplicates(sudokuIntArray);
@@ -116,10 +117,6 @@ namespace SudokuApp.Model
             }
             return hasEmptyFields;
         }
-
-
-
-
         private bool CheckSudokuForDuplicates(int[] sudokuIntArray)
         {
             bool[] duplicatesArray = GetDuplicatesArray(sudokuIntArray);
@@ -159,31 +156,29 @@ namespace SudokuApp.Model
             // fieldNumber=1-81 / RowNumber=1-9 
             int fieldNumber = fieldArrayIndex + 1;
             int rowNumber = 1;
-            while (fieldNumber > sudokuSquareLength)
+            while (fieldNumber > SudokuSquareLength)
             {
-                fieldNumber -= sudokuSquareLength;
+                fieldNumber -= SudokuSquareLength;
                 rowNumber++;
             }
-
             return rowNumber;
         }
 
         private int GetColumnNumberOfField(int fieldArrayIndex)
         {
-            // fieldNumber=1-81 / ColumnNumber=1-9 
+            // FieldNumber=1-81 / ColumnNumber=1-9 
             int fieldNumber = fieldArrayIndex + 1;
-            int columnNumber = 1;
-            while (fieldNumber > sudokuSquareLength)
+            while (fieldNumber > SudokuSquareLength)
             {
-                fieldNumber -= sudokuSquareLength;
+                fieldNumber -= SudokuSquareLength;
             }
-            columnNumber = fieldNumber;
+            int columnNumber = fieldNumber;
             return columnNumber;
         }
 
         private int GetSectorNumberOfField(int fieldArrayIndex)
         {
-            // fieldNumber=1-81 / SectorNumber=1-9
+            // FieldNumber=1-81 / SectorNumber=1-9
             int rowNumber = GetRowNumberOfField(fieldArrayIndex);
             int columnNumber = GetColumnNumberOfField(fieldArrayIndex);
 
@@ -222,6 +217,7 @@ namespace SudokuApp.Model
             }
             return duplicateCounter > 1;
         }
+
         private bool CheckFieldForRowDuplicate(int currentFieldIndex, int[] intArray)
         {
             int duplicateCounter = 0;

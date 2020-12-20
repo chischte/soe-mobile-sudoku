@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using SudokuApp.Model;
@@ -3303,8 +3304,8 @@ namespace SudokuApp.ViewModel
                 _loadButtonCommand = new Command<string>(Load);
                 return _loadButtonCommand;
             }
-
         }
+
         private void Load(string commandString)
         {
             string[] sudokuStringArray = sudokuManager.GetNewSudokuStringArray();
@@ -3321,29 +3322,29 @@ namespace SudokuApp.ViewModel
                 return _checkButtonCommand;
             }
         }
+
         private void CheckAndRefresh(string commandString)
         {
-
             string[] checkedFieldValues = sudokuManager.GetCheckedStringArray(GetStringArrayFromFields());
             AssignValuesToFields(checkedFieldValues); // Invalid entries have been removed
             FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(checkedFieldValues);
             SetFieldColors(fieldColorArray);
         }
 
-        private ICommand _reloadButtonCommand;
+        private ICommand _solveButtonCommand;
 
-        public ICommand ReloadButtonCommand
+        public ICommand SolveButtonCommand
         {
             get
             {
-                _reloadButtonCommand=new Command<String>(Reload);
-                return _reloadButtonCommand;
+                _solveButtonCommand = new Command<String>(Solve);
+                return _solveButtonCommand;
             }
         }
 
-        private void Reload(string commandString)
+        private void Solve(string commandString)
         {
-            
+            // Solver not implemented yet
         }
 
         #endregion
