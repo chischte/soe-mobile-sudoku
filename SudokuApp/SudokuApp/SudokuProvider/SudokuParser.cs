@@ -10,7 +10,6 @@ namespace SudokuApp.SudokuProvider
 
     public class SudokuParser
     {
-        static int sudokuSquareLength = 9;
         const int SudokuNumberOfFields = 81;
 
         private int[] sudokuArray = new int[SudokuNumberOfFields];

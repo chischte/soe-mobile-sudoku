@@ -3329,6 +3329,23 @@ namespace SudokuApp.ViewModel
             FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(checkedFieldValues);
             SetFieldColors(fieldColorArray);
         }
+
+        private ICommand _reloadButtonCommand;
+
+        public ICommand ReloadButtonCommand
+        {
+            get
+            {
+                _reloadButtonCommand=new Command<String>(Reload);
+                return _reloadButtonCommand;
+            }
+        }
+
+        private void Reload(string commandString)
+        {
+            sudokuManager.Loescher();
+        }
+
         #endregion
     }
 }

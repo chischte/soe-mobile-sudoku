@@ -1025,11 +1025,11 @@
             Grid.Column="9"
             Grid.ColumnSpan="3"
             BackgroundColor="Gray"
-            Command="{Binding CheckButtonCommand}"
+            Command="{Binding ReloadButtonCommand}"
             CommandParameter="111"
             FontAttributes="Bold"
             FontSize="20"
-            Text="REFRESH"
+            Text="RELOAD"
             VerticalOptions="Center" />
 
     </Grid>

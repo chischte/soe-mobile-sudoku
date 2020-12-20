@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using SudokuApp.SudokuProvider;
 using SudokuApp.view;
@@ -13,6 +14,7 @@ namespace SudokuApp.Model
         // From the sudoku parser it gets an integer array
 
         const int NumberOfSudokuFields = 81;
+        const int sudokuSquareLength = 9;
 
         private SudokuParser sudokuParser;
 
@@ -133,6 +135,71 @@ namespace SudokuApp.Model
             return duplicatesArray;
         }
 
+
+       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public void DebugFunction()
+        {
+            for (int i = 0; i < 81; i++)
+            {
+                GetSectorNumberOfField(i);
+            }
+        }
+       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+        private int GetRowNumberOfField(int fieldArrayIndex)
+        {
+            // fieldNumber=1-81 / RowNumber=1-9 
+            int fieldNumber = fieldArrayIndex + 1;
+            int rowNumber = 1;
+            while (fieldNumber > sudokuSquareLength)
+            {
+                fieldNumber -= sudokuSquareLength;
+                rowNumber++;
+            }
+
+            return rowNumber;
+        }
+
+        private int GetColumnNumberOfField(int fieldArrayIndex)
+        {
+            // fieldNumber=1-81 / ColumnNumber=1-9 
+            int fieldNumber = fieldArrayIndex + 1;
+            int columnNumber = 1;
+            while (fieldNumber > sudokuSquareLength)
+            {
+                fieldNumber -= sudokuSquareLength;
+            }
+            columnNumber = fieldNumber;
+            return columnNumber;
+        }
+
+        private int GetSectorNumberOfField(int fieldArrayIndex)
+        {
+            // fieldNumber=1-81 / SectorNumber=1-9
+            int rowNumber = GetRowNumberOfField(fieldArrayIndex);
+            int columnNumber = GetColumnNumberOfField(fieldArrayIndex);
+
+            int sudokuSectorLength = 3;
+
+            int sectorNumber = 1;
+            while (rowNumber > sudokuSectorLength)
+            {
+                rowNumber -= sudokuSectorLength;
+                sectorNumber += 3;
+            }
+
+            while (columnNumber > sudokuSectorLength)
+            {
+                columnNumber -= sudokuSectorLength;
+                sectorNumber++;
+            }
+
+            return sectorNumber;
+        }
+
         private bool CheckFieldValueForDuplicate(int currentValue, int[] intArray)
         {
             int duplicateCounter = 0;
@@ -162,7 +229,7 @@ namespace SudokuApp.Model
         #endregion
 
         #region assign colors --------------------------------------------------
-        
+
         private FieldColor[] MakeDuplicatesRed(int[] sudokuIntArray)
         {
             FieldColor[] fieldColorArray = new FieldColor[NumberOfSudokuFields];
