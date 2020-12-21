@@ -3,11 +3,6 @@ using Newtonsoft.Json.Linq;
 
 namespace SudokuApp.SudokuProvider
 {
-    public class SudokuJson
-    {
-        public string puzzle { get; set; }
-    }
-
     public class SudokuParser
     {
         const int SudokuNumberOfFields = 81;
