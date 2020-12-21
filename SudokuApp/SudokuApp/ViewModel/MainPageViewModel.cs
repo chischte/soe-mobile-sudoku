@@ -3309,8 +3309,11 @@ namespace SudokuApp.ViewModel
         private void Load(string commandString)
         {
             string[] sudokuStringArray = sudokuManager.GetNewSudokuStringArray();
-            DisableFieldsWithFixedNumbers(sudokuStringArray);
-            AssignValuesToFields(sudokuStringArray);
+            if (sudokuStringArray.Length == NumberOfSudokuFields) // For mock testing
+            {
+                DisableFieldsWithFixedNumbers(sudokuStringArray);
+                AssignValuesToFields(sudokuStringArray);
+            }
         }
 
         private ICommand _checkButtonCommand;
@@ -3325,10 +3328,15 @@ namespace SudokuApp.ViewModel
 
         private void CheckAndRefresh(string commandString)
         {
-            string[] checkedFieldValues = sudokuManager.GetCheckedStringArray(GetStringArrayFromFields());
-            AssignValuesToFields(checkedFieldValues); // Invalid entries have been removed
-            FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(checkedFieldValues);
-            SetFieldColors(fieldColorArray);
+            string[] checkedFieldValues = new string[NumberOfSudokuFields];
+            if (!sudokuManager.GetCheckedStringArray(GetStringArrayFromFields()).Contains(null))
+            {
+                checkedFieldValues = sudokuManager.GetCheckedStringArray(GetStringArrayFromFields());
+            }
+            //AssignValuesToFields(checkedFieldValues); // Invalid entries have been removed
+            //FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(checkedFieldValues);
+            //SetFieldColors(fieldColorArray);
+
         }
 
         private ICommand _solveButtonCommand;
