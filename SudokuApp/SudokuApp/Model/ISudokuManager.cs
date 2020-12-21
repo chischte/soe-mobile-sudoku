@@ -11,8 +11,8 @@ namespace SudokuApp.Model
 
     public interface ISudokuManager
     {
-       string[] GetNewSudokuStringArray();
+        string[] GetNewSudokuStringArray();
         string[] GetCheckedStringArray(string[] sudokuStringArray);
-       FieldColor[] GetFieldColorArray(string[] sudokuStringArray);
+        FieldColor[] GetFieldColorArray(string[] sudokuStringArray);
     }
 }
