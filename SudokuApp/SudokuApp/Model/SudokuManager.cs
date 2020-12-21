@@ -25,12 +25,7 @@ namespace SudokuApp.Model
 
         #region public methods -------------------------------------------------
 
-        public int ReturnSameNumber(int number)
-        {
-            return number;
-        }
-        
-        public string[] GetNewSudokuStringArray()
+       public string[] GetNewSudokuStringArray()
         {
             int[] sudokuIntArray = sudokuParser.GetSudokuArrayFromJson();
             return ConvertIntToStringArray(sudokuIntArray);

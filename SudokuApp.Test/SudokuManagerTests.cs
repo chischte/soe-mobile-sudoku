@@ -7,56 +7,70 @@ namespace SudokuApp
     public class SudokuManagerTests
     {
         private SudokuManager testee;
+        const int NumberOfSudokuFields = 81;
 
         public SudokuManagerTests()
         {
-            this.testee=new SudokuManager();
+            this.testee = new SudokuManager();
         }
 
-        [TestMethod]
-        public void TestRemoveZerosFromStringArray()
+       [TestMethod]
+
+        public void TestRemoveInvalidEntriesFromStringArray()
         {
             // Arrange
-            string[] inputStringArray = new string[]
-            {
-                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
-                "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
-                "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53",
-                "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70",
-                "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81"
-            };
+            string[] inputStringArray = new string[NumberOfSudokuFields];
+            // Add invalid entries to string array:
+            inputStringArray[0] = "AA";
+            inputStringArray[11] = "20";
+            inputStringArray[22] = "-2";
+            inputStringArray[33] = "0";
+            inputStringArray[44] = " ";
 
-            string[] expectedResultArray = inputStringArray;
 
-            for (int i = 9; i < 81; i++)
-            {
-                expectedResultArray[i] = "";
-
-            }
-
+            string expectedResult = "";
 
             // Act
             var result = this.testee.GetCheckedStringArray(inputStringArray);
 
             // Assert
-            Assert.AreEqual(expectedResultArray[10], result[10]);
-
+            Assert.AreEqual(expectedResult, result[0]);
+            Assert.AreEqual(expectedResult, result[11]);
+            Assert.AreEqual(expectedResult, result[22]);
+            Assert.AreEqual(expectedResult, result[33]);
+            Assert.AreEqual(expectedResult, result[44]);
         }
 
         [TestMethod]
-        public void TestReturnSameNumber()
+
+        public void TestFindDuplicatesInSector()
         {
             // Arrange
-            int inputNumber = 555;
+            string[] inputStringArray = new string[NumberOfSudokuFields];
+            
+            // Add duplicates to string array:
+            inputStringArray[0] = "5";  // Sector 1 / Row 1 / Column 1
+            inputStringArray[10] = "5"; // Sector 1 / Row 2 / Column 2
 
-            int expectedResult = 555;
+            inputStringArray[60] = "7"; // Sector 9 / Row 7 / Column 7
+            inputStringArray[70] = "7"; // Sector 9 / Row 8 / Column 8
+            inputStringArray[50] = "7"; // Sector 5 -> not a duplicate
+
+
+            FieldColor expectedResultDuplicate = FieldColor.Red; // Duplicates are marked red
+            FieldColor expectedResultNoDuplicate = FieldColor.Black; // Non-duplicates remain black
 
             // Act
-            var result = this.testee.ReturnSameNumber(inputNumber);
+            var result = this.testee.GetFieldColorArray(inputStringArray);
 
             // Assert
-            Assert.AreEqual(expectedResult, result);
-
+            Assert.AreEqual(expectedResultDuplicate, result[0]);
+            Assert.AreEqual(expectedResultDuplicate, result[10]);
+            Assert.AreEqual(expectedResultDuplicate, result[60]);
+            Assert.AreEqual(expectedResultDuplicate, result[70]);
+            Assert.AreEqual(expectedResultNoDuplicate, result[50]);
         }
+
+
     }
 }
