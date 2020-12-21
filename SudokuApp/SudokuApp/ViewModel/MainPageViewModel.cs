@@ -20,87 +20,90 @@ namespace SudokuApp.ViewModel
 
         private void AssignValuesToFields(string[] sudokuStringArray)
         {
-            Field01 = sudokuStringArray[0];
-            Field02 = sudokuStringArray[1];
-            Field03 = sudokuStringArray[2];
-            Field04 = sudokuStringArray[3];
-            Field05 = sudokuStringArray[4];
-            Field06 = sudokuStringArray[5];
-            Field07 = sudokuStringArray[6];
-            Field08 = sudokuStringArray[7];
-            Field09 = sudokuStringArray[8];
-            Field10 = sudokuStringArray[9];
-            Field11 = sudokuStringArray[10];
-            Field12 = sudokuStringArray[11];
-            Field13 = sudokuStringArray[12];
-            Field14 = sudokuStringArray[13];
-            Field15 = sudokuStringArray[14];
-            Field16 = sudokuStringArray[15];
-            Field17 = sudokuStringArray[16];
-            Field18 = sudokuStringArray[17];
-            Field19 = sudokuStringArray[18];
-            Field20 = sudokuStringArray[19];
-            Field21 = sudokuStringArray[20];
-            Field22 = sudokuStringArray[21];
-            Field23 = sudokuStringArray[22];
-            Field24 = sudokuStringArray[23];
-            Field25 = sudokuStringArray[24];
-            Field26 = sudokuStringArray[25];
-            Field27 = sudokuStringArray[26];
-            Field28 = sudokuStringArray[27];
-            Field29 = sudokuStringArray[28];
-            Field30 = sudokuStringArray[29];
-            Field31 = sudokuStringArray[30];
-            Field32 = sudokuStringArray[31];
-            Field33 = sudokuStringArray[32];
-            Field34 = sudokuStringArray[33];
-            Field35 = sudokuStringArray[34];
-            Field36 = sudokuStringArray[35];
-            Field37 = sudokuStringArray[36];
-            Field38 = sudokuStringArray[37];
-            Field39 = sudokuStringArray[38];
-            Field40 = sudokuStringArray[39];
-            Field41 = sudokuStringArray[40];
-            Field42 = sudokuStringArray[41];
-            Field43 = sudokuStringArray[42];
-            Field44 = sudokuStringArray[43];
-            Field45 = sudokuStringArray[44];
-            Field46 = sudokuStringArray[45];
-            Field47 = sudokuStringArray[46];
-            Field48 = sudokuStringArray[47];
-            Field49 = sudokuStringArray[48];
-            Field50 = sudokuStringArray[49];
-            Field51 = sudokuStringArray[50];
-            Field52 = sudokuStringArray[51];
-            Field53 = sudokuStringArray[52];
-            Field54 = sudokuStringArray[53];
-            Field55 = sudokuStringArray[54];
-            Field56 = sudokuStringArray[55];
-            Field57 = sudokuStringArray[56];
-            Field58 = sudokuStringArray[57];
-            Field59 = sudokuStringArray[58];
-            Field60 = sudokuStringArray[59];
-            Field61 = sudokuStringArray[60];
-            Field62 = sudokuStringArray[61];
-            Field63 = sudokuStringArray[62];
-            Field64 = sudokuStringArray[63];
-            Field65 = sudokuStringArray[64];
-            Field66 = sudokuStringArray[65];
-            Field67 = sudokuStringArray[66];
-            Field68 = sudokuStringArray[67];
-            Field69 = sudokuStringArray[68];
-            Field70 = sudokuStringArray[69];
-            Field71 = sudokuStringArray[70];
-            Field72 = sudokuStringArray[71];
-            Field73 = sudokuStringArray[72];
-            Field74 = sudokuStringArray[73];
-            Field75 = sudokuStringArray[74];
-            Field76 = sudokuStringArray[75];
-            Field77 = sudokuStringArray[76];
-            Field78 = sudokuStringArray[77];
-            Field79 = sudokuStringArray[78];
-            Field80 = sudokuStringArray[79];
-            Field81 = sudokuStringArray[80];
+            if (sudokuStringArray.Length == NumberOfSudokuFields) // For mock testing
+            {
+                Field01 = sudokuStringArray[0];
+                Field02 = sudokuStringArray[1];
+                Field03 = sudokuStringArray[2];
+                Field04 = sudokuStringArray[3];
+                Field05 = sudokuStringArray[4];
+                Field06 = sudokuStringArray[5];
+                Field07 = sudokuStringArray[6];
+                Field08 = sudokuStringArray[7];
+                Field09 = sudokuStringArray[8];
+                Field10 = sudokuStringArray[9];
+                Field11 = sudokuStringArray[10];
+                Field12 = sudokuStringArray[11];
+                Field13 = sudokuStringArray[12];
+                Field14 = sudokuStringArray[13];
+                Field15 = sudokuStringArray[14];
+                Field16 = sudokuStringArray[15];
+                Field17 = sudokuStringArray[16];
+                Field18 = sudokuStringArray[17];
+                Field19 = sudokuStringArray[18];
+                Field20 = sudokuStringArray[19];
+                Field21 = sudokuStringArray[20];
+                Field22 = sudokuStringArray[21];
+                Field23 = sudokuStringArray[22];
+                Field24 = sudokuStringArray[23];
+                Field25 = sudokuStringArray[24];
+                Field26 = sudokuStringArray[25];
+                Field27 = sudokuStringArray[26];
+                Field28 = sudokuStringArray[27];
+                Field29 = sudokuStringArray[28];
+                Field30 = sudokuStringArray[29];
+                Field31 = sudokuStringArray[30];
+                Field32 = sudokuStringArray[31];
+                Field33 = sudokuStringArray[32];
+                Field34 = sudokuStringArray[33];
+                Field35 = sudokuStringArray[34];
+                Field36 = sudokuStringArray[35];
+                Field37 = sudokuStringArray[36];
+                Field38 = sudokuStringArray[37];
+                Field39 = sudokuStringArray[38];
+                Field40 = sudokuStringArray[39];
+                Field41 = sudokuStringArray[40];
+                Field42 = sudokuStringArray[41];
+                Field43 = sudokuStringArray[42];
+                Field44 = sudokuStringArray[43];
+                Field45 = sudokuStringArray[44];
+                Field46 = sudokuStringArray[45];
+                Field47 = sudokuStringArray[46];
+                Field48 = sudokuStringArray[47];
+                Field49 = sudokuStringArray[48];
+                Field50 = sudokuStringArray[49];
+                Field51 = sudokuStringArray[50];
+                Field52 = sudokuStringArray[51];
+                Field53 = sudokuStringArray[52];
+                Field54 = sudokuStringArray[53];
+                Field55 = sudokuStringArray[54];
+                Field56 = sudokuStringArray[55];
+                Field57 = sudokuStringArray[56];
+                Field58 = sudokuStringArray[57];
+                Field59 = sudokuStringArray[58];
+                Field60 = sudokuStringArray[59];
+                Field61 = sudokuStringArray[60];
+                Field62 = sudokuStringArray[61];
+                Field63 = sudokuStringArray[62];
+                Field64 = sudokuStringArray[63];
+                Field65 = sudokuStringArray[64];
+                Field66 = sudokuStringArray[65];
+                Field67 = sudokuStringArray[66];
+                Field68 = sudokuStringArray[67];
+                Field69 = sudokuStringArray[68];
+                Field70 = sudokuStringArray[69];
+                Field71 = sudokuStringArray[70];
+                Field72 = sudokuStringArray[71];
+                Field73 = sudokuStringArray[72];
+                Field74 = sudokuStringArray[73];
+                Field75 = sudokuStringArray[74];
+                Field76 = sudokuStringArray[75];
+                Field77 = sudokuStringArray[76];
+                Field78 = sudokuStringArray[77];
+                Field79 = sudokuStringArray[78];
+                Field80 = sudokuStringArray[79];
+                Field81 = sudokuStringArray[80];
+            }
         }
 
         private string[] GetStringArrayFromFields()
@@ -192,88 +195,93 @@ namespace SudokuApp.ViewModel
 
         private void DisableFieldsWithFixedNumbers(string[] sudokuStringArray)
         {
-            IsEnabled01 = String.IsNullOrEmpty(sudokuStringArray[0]) ? "true" : "false";
-            IsEnabled02 = String.IsNullOrEmpty(sudokuStringArray[1]) ? "true" : "false";
-            IsEnabled03 = String.IsNullOrEmpty(sudokuStringArray[2]) ? "true" : "false";
-            IsEnabled04 = String.IsNullOrEmpty(sudokuStringArray[3]) ? "true" : "false";
-            IsEnabled05 = String.IsNullOrEmpty(sudokuStringArray[4]) ? "true" : "false";
-            IsEnabled06 = String.IsNullOrEmpty(sudokuStringArray[5]) ? "true" : "false";
-            IsEnabled07 = String.IsNullOrEmpty(sudokuStringArray[6]) ? "true" : "false";
-            IsEnabled08 = String.IsNullOrEmpty(sudokuStringArray[7]) ? "true" : "false";
-            IsEnabled09 = String.IsNullOrEmpty(sudokuStringArray[8]) ? "true" : "false";
-            IsEnabled10 = String.IsNullOrEmpty(sudokuStringArray[9]) ? "true" : "false";
-            IsEnabled11 = String.IsNullOrEmpty(sudokuStringArray[10]) ? "true" : "false";
-            IsEnabled12 = String.IsNullOrEmpty(sudokuStringArray[11]) ? "true" : "false";
-            IsEnabled13 = String.IsNullOrEmpty(sudokuStringArray[12]) ? "true" : "false";
-            IsEnabled14 = String.IsNullOrEmpty(sudokuStringArray[13]) ? "true" : "false";
-            IsEnabled15 = String.IsNullOrEmpty(sudokuStringArray[14]) ? "true" : "false";
-            IsEnabled16 = String.IsNullOrEmpty(sudokuStringArray[15]) ? "true" : "false";
-            IsEnabled17 = String.IsNullOrEmpty(sudokuStringArray[16]) ? "true" : "false";
-            IsEnabled18 = String.IsNullOrEmpty(sudokuStringArray[17]) ? "true" : "false";
-            IsEnabled19 = String.IsNullOrEmpty(sudokuStringArray[18]) ? "true" : "false";
-            IsEnabled20 = String.IsNullOrEmpty(sudokuStringArray[19]) ? "true" : "false";
-            IsEnabled21 = String.IsNullOrEmpty(sudokuStringArray[20]) ? "true" : "false";
-            IsEnabled22 = String.IsNullOrEmpty(sudokuStringArray[21]) ? "true" : "false";
-            IsEnabled23 = String.IsNullOrEmpty(sudokuStringArray[22]) ? "true" : "false";
-            IsEnabled24 = String.IsNullOrEmpty(sudokuStringArray[23]) ? "true" : "false";
-            IsEnabled25 = String.IsNullOrEmpty(sudokuStringArray[24]) ? "true" : "false";
-            IsEnabled26 = String.IsNullOrEmpty(sudokuStringArray[25]) ? "true" : "false";
-            IsEnabled27 = String.IsNullOrEmpty(sudokuStringArray[26]) ? "true" : "false";
-            IsEnabled28 = String.IsNullOrEmpty(sudokuStringArray[27]) ? "true" : "false";
-            IsEnabled29 = String.IsNullOrEmpty(sudokuStringArray[28]) ? "true" : "false";
-            IsEnabled30 = String.IsNullOrEmpty(sudokuStringArray[29]) ? "true" : "false";
-            IsEnabled31 = String.IsNullOrEmpty(sudokuStringArray[30]) ? "true" : "false";
-            IsEnabled32 = String.IsNullOrEmpty(sudokuStringArray[31]) ? "true" : "false";
-            IsEnabled33 = String.IsNullOrEmpty(sudokuStringArray[32]) ? "true" : "false";
-            IsEnabled34 = String.IsNullOrEmpty(sudokuStringArray[33]) ? "true" : "false";
-            IsEnabled35 = String.IsNullOrEmpty(sudokuStringArray[34]) ? "true" : "false";
-            IsEnabled36 = String.IsNullOrEmpty(sudokuStringArray[35]) ? "true" : "false";
-            IsEnabled37 = String.IsNullOrEmpty(sudokuStringArray[36]) ? "true" : "false";
-            IsEnabled38 = String.IsNullOrEmpty(sudokuStringArray[37]) ? "true" : "false";
-            IsEnabled39 = String.IsNullOrEmpty(sudokuStringArray[38]) ? "true" : "false";
-            IsEnabled40 = String.IsNullOrEmpty(sudokuStringArray[39]) ? "true" : "false";
-            IsEnabled41 = String.IsNullOrEmpty(sudokuStringArray[40]) ? "true" : "false";
-            IsEnabled42 = String.IsNullOrEmpty(sudokuStringArray[41]) ? "true" : "false";
-            IsEnabled43 = String.IsNullOrEmpty(sudokuStringArray[42]) ? "true" : "false";
-            IsEnabled44 = String.IsNullOrEmpty(sudokuStringArray[43]) ? "true" : "false";
-            IsEnabled45 = String.IsNullOrEmpty(sudokuStringArray[44]) ? "true" : "false";
-            IsEnabled46 = String.IsNullOrEmpty(sudokuStringArray[45]) ? "true" : "false";
-            IsEnabled47 = String.IsNullOrEmpty(sudokuStringArray[46]) ? "true" : "false";
-            IsEnabled48 = String.IsNullOrEmpty(sudokuStringArray[47]) ? "true" : "false";
-            IsEnabled49 = String.IsNullOrEmpty(sudokuStringArray[48]) ? "true" : "false";
-            IsEnabled50 = String.IsNullOrEmpty(sudokuStringArray[49]) ? "true" : "false";
-            IsEnabled51 = String.IsNullOrEmpty(sudokuStringArray[50]) ? "true" : "false";
-            IsEnabled52 = String.IsNullOrEmpty(sudokuStringArray[51]) ? "true" : "false";
-            IsEnabled53 = String.IsNullOrEmpty(sudokuStringArray[52]) ? "true" : "false";
-            IsEnabled54 = String.IsNullOrEmpty(sudokuStringArray[53]) ? "true" : "false";
-            IsEnabled55 = String.IsNullOrEmpty(sudokuStringArray[54]) ? "true" : "false";
-            IsEnabled56 = String.IsNullOrEmpty(sudokuStringArray[55]) ? "true" : "false";
-            IsEnabled57 = String.IsNullOrEmpty(sudokuStringArray[56]) ? "true" : "false";
-            IsEnabled58 = String.IsNullOrEmpty(sudokuStringArray[57]) ? "true" : "false";
-            IsEnabled59 = String.IsNullOrEmpty(sudokuStringArray[58]) ? "true" : "false";
-            IsEnabled60 = String.IsNullOrEmpty(sudokuStringArray[59]) ? "true" : "false";
-            IsEnabled61 = String.IsNullOrEmpty(sudokuStringArray[60]) ? "true" : "false";
-            IsEnabled62 = String.IsNullOrEmpty(sudokuStringArray[61]) ? "true" : "false";
-            IsEnabled63 = String.IsNullOrEmpty(sudokuStringArray[62]) ? "true" : "false";
-            IsEnabled64 = String.IsNullOrEmpty(sudokuStringArray[63]) ? "true" : "false";
-            IsEnabled65 = String.IsNullOrEmpty(sudokuStringArray[64]) ? "true" : "false";
-            IsEnabled66 = String.IsNullOrEmpty(sudokuStringArray[65]) ? "true" : "false";
-            IsEnabled67 = String.IsNullOrEmpty(sudokuStringArray[66]) ? "true" : "false";
-            IsEnabled68 = String.IsNullOrEmpty(sudokuStringArray[67]) ? "true" : "false";
-            IsEnabled69 = String.IsNullOrEmpty(sudokuStringArray[68]) ? "true" : "false";
-            IsEnabled70 = String.IsNullOrEmpty(sudokuStringArray[69]) ? "true" : "false";
-            IsEnabled71 = String.IsNullOrEmpty(sudokuStringArray[70]) ? "true" : "false";
-            IsEnabled72 = String.IsNullOrEmpty(sudokuStringArray[71]) ? "true" : "false";
-            IsEnabled73 = String.IsNullOrEmpty(sudokuStringArray[72]) ? "true" : "false";
-            IsEnabled74 = String.IsNullOrEmpty(sudokuStringArray[73]) ? "true" : "false";
-            IsEnabled75 = String.IsNullOrEmpty(sudokuStringArray[74]) ? "true" : "false";
-            IsEnabled76 = String.IsNullOrEmpty(sudokuStringArray[75]) ? "true" : "false";
-            IsEnabled77 = String.IsNullOrEmpty(sudokuStringArray[76]) ? "true" : "false";
-            IsEnabled78 = String.IsNullOrEmpty(sudokuStringArray[77]) ? "true" : "false";
-            IsEnabled79 = String.IsNullOrEmpty(sudokuStringArray[78]) ? "true" : "false";
-            IsEnabled80 = String.IsNullOrEmpty(sudokuStringArray[79]) ? "true" : "false";
-            IsEnabled81 = String.IsNullOrEmpty(sudokuStringArray[80]) ? "true" : "false";
+            if (sudokuStringArray.Length == NumberOfSudokuFields) // For mock testing
+            {
+                IsEnabled01 = String.IsNullOrEmpty(sudokuStringArray[0]) ? "true" : "false";
+                IsEnabled02 = String.IsNullOrEmpty(sudokuStringArray[1]) ? "true" : "false";
+                IsEnabled03 = String.IsNullOrEmpty(sudokuStringArray[2]) ? "true" : "false";
+                IsEnabled04 = String.IsNullOrEmpty(sudokuStringArray[3]) ? "true" : "false";
+                IsEnabled05 = String.IsNullOrEmpty(sudokuStringArray[4]) ? "true" : "false";
+                IsEnabled06 = String.IsNullOrEmpty(sudokuStringArray[5]) ? "true" : "false";
+                IsEnabled07 = String.IsNullOrEmpty(sudokuStringArray[6]) ? "true" : "false";
+                IsEnabled08 = String.IsNullOrEmpty(sudokuStringArray[7]) ? "true" : "false";
+                IsEnabled09 = String.IsNullOrEmpty(sudokuStringArray[8]) ? "true" : "false";
+                IsEnabled10 = String.IsNullOrEmpty(sudokuStringArray[9]) ? "true" : "false";
+                IsEnabled11 = String.IsNullOrEmpty(sudokuStringArray[10]) ? "true" : "false";
+                IsEnabled12 = String.IsNullOrEmpty(sudokuStringArray[11]) ? "true" : "false";
+                IsEnabled13 = String.IsNullOrEmpty(sudokuStringArray[12]) ? "true" : "false";
+                IsEnabled14 = String.IsNullOrEmpty(sudokuStringArray[13]) ? "true" : "false";
+                IsEnabled15 = String.IsNullOrEmpty(sudokuStringArray[14]) ? "true" : "false";
+                IsEnabled16 = String.IsNullOrEmpty(sudokuStringArray[15]) ? "true" : "false";
+                IsEnabled17 = String.IsNullOrEmpty(sudokuStringArray[16]) ? "true" : "false";
+                IsEnabled18 = String.IsNullOrEmpty(sudokuStringArray[17]) ? "true" : "false";
+                IsEnabled19 = String.IsNullOrEmpty(sudokuStringArray[18]) ? "true" : "false";
+                IsEnabled20 = String.IsNullOrEmpty(sudokuStringArray[19]) ? "true" : "false";
+                IsEnabled21 = String.IsNullOrEmpty(sudokuStringArray[20]) ? "true" : "false";
+                IsEnabled22 = String.IsNullOrEmpty(sudokuStringArray[21]) ? "true" : "false";
+                IsEnabled23 = String.IsNullOrEmpty(sudokuStringArray[22]) ? "true" : "false";
+                IsEnabled24 = String.IsNullOrEmpty(sudokuStringArray[23]) ? "true" : "false";
+                IsEnabled25 = String.IsNullOrEmpty(sudokuStringArray[24]) ? "true" : "false";
+                IsEnabled26 = String.IsNullOrEmpty(sudokuStringArray[25]) ? "true" : "false";
+                IsEnabled27 = String.IsNullOrEmpty(sudokuStringArray[26]) ? "true" : "false";
+                IsEnabled28 = String.IsNullOrEmpty(sudokuStringArray[27]) ? "true" : "false";
+                IsEnabled29 = String.IsNullOrEmpty(sudokuStringArray[28]) ? "true" : "false";
+                IsEnabled30 = String.IsNullOrEmpty(sudokuStringArray[29]) ? "true" : "false";
+                IsEnabled31 = String.IsNullOrEmpty(sudokuStringArray[30]) ? "true" : "false";
+                IsEnabled32 = String.IsNullOrEmpty(sudokuStringArray[31]) ? "true" : "false";
+                IsEnabled33 = String.IsNullOrEmpty(sudokuStringArray[32]) ? "true" : "false";
+                IsEnabled34 = String.IsNullOrEmpty(sudokuStringArray[33]) ? "true" : "false";
+                IsEnabled35 = String.IsNullOrEmpty(sudokuStringArray[34]) ? "true" : "false";
+                IsEnabled36 = String.IsNullOrEmpty(sudokuStringArray[35]) ? "true" : "false";
+                IsEnabled37 = String.IsNullOrEmpty(sudokuStringArray[36]) ? "true" : "false";
+                IsEnabled38 = String.IsNullOrEmpty(sudokuStringArray[37]) ? "true" : "false";
+                IsEnabled39 = String.IsNullOrEmpty(sudokuStringArray[38]) ? "true" : "false";
+                IsEnabled40 = String.IsNullOrEmpty(sudokuStringArray[39]) ? "true" : "false";
+                IsEnabled41 = String.IsNullOrEmpty(sudokuStringArray[40]) ? "true" : "false";
+                IsEnabled42 = String.IsNullOrEmpty(sudokuStringArray[41]) ? "true" : "false";
+                IsEnabled43 = String.IsNullOrEmpty(sudokuStringArray[42]) ? "true" : "false";
+                IsEnabled44 = String.IsNullOrEmpty(sudokuStringArray[43]) ? "true" : "false";
+                IsEnabled45 = String.IsNullOrEmpty(sudokuStringArray[44]) ? "true" : "false";
+                IsEnabled46 = String.IsNullOrEmpty(sudokuStringArray[45]) ? "true" : "false";
+                IsEnabled47 = String.IsNullOrEmpty(sudokuStringArray[46]) ? "true" : "false";
+                IsEnabled48 = String.IsNullOrEmpty(sudokuStringArray[47]) ? "true" : "false";
+                IsEnabled49 = String.IsNullOrEmpty(sudokuStringArray[48]) ? "true" : "false";
+                IsEnabled50 = String.IsNullOrEmpty(sudokuStringArray[49]) ? "true" : "false";
+                IsEnabled51 = String.IsNullOrEmpty(sudokuStringArray[50]) ? "true" : "false";
+                IsEnabled52 = String.IsNullOrEmpty(sudokuStringArray[51]) ? "true" : "false";
+                IsEnabled53 = String.IsNullOrEmpty(sudokuStringArray[52]) ? "true" : "false";
+                IsEnabled54 = String.IsNullOrEmpty(sudokuStringArray[53]) ? "true" : "false";
+                IsEnabled55 = String.IsNullOrEmpty(sudokuStringArray[54]) ? "true" : "false";
+                IsEnabled56 = String.IsNullOrEmpty(sudokuStringArray[55]) ? "true" : "false";
+                IsEnabled57 = String.IsNullOrEmpty(sudokuStringArray[56]) ? "true" : "false";
+                IsEnabled58 = String.IsNullOrEmpty(sudokuStringArray[57]) ? "true" : "false";
+                IsEnabled59 = String.IsNullOrEmpty(sudokuStringArray[58]) ? "true" : "false";
+                IsEnabled60 = String.IsNullOrEmpty(sudokuStringArray[59]) ? "true" : "false";
+                IsEnabled61 = String.IsNullOrEmpty(sudokuStringArray[60]) ? "true" : "false";
+                IsEnabled62 = String.IsNullOrEmpty(sudokuStringArray[61]) ? "true" : "false";
+                IsEnabled63 = String.IsNullOrEmpty(sudokuStringArray[62]) ? "true" : "false";
+                IsEnabled64 = String.IsNullOrEmpty(sudokuStringArray[63]) ? "true" : "false";
+                IsEnabled65 = String.IsNullOrEmpty(sudokuStringArray[64]) ? "true" : "false";
+                IsEnabled66 = String.IsNullOrEmpty(sudokuStringArray[65]) ? "true" : "false";
+                IsEnabled67 = String.IsNullOrEmpty(sudokuStringArray[66]) ? "true" : "false";
+                IsEnabled68 = String.IsNullOrEmpty(sudokuStringArray[67]) ? "true" : "false";
+                IsEnabled69 = String.IsNullOrEmpty(sudokuStringArray[68]) ? "true" : "false";
+                IsEnabled70 = String.IsNullOrEmpty(sudokuStringArray[69]) ? "true" : "false";
+                IsEnabled71 = String.IsNullOrEmpty(sudokuStringArray[70]) ? "true" : "false";
+                IsEnabled72 = String.IsNullOrEmpty(sudokuStringArray[71]) ? "true" : "false";
+                IsEnabled73 = String.IsNullOrEmpty(sudokuStringArray[72]) ? "true" : "false";
+                IsEnabled74 = String.IsNullOrEmpty(sudokuStringArray[73]) ? "true" : "false";
+                IsEnabled75 = String.IsNullOrEmpty(sudokuStringArray[74]) ? "true" : "false";
+                IsEnabled76 = String.IsNullOrEmpty(sudokuStringArray[75]) ? "true" : "false";
+                IsEnabled77 = String.IsNullOrEmpty(sudokuStringArray[76]) ? "true" : "false";
+                IsEnabled78 = String.IsNullOrEmpty(sudokuStringArray[77]) ? "true" : "false";
+                IsEnabled79 = String.IsNullOrEmpty(sudokuStringArray[78]) ? "true" : "false";
+                IsEnabled80 = String.IsNullOrEmpty(sudokuStringArray[79]) ? "true" : "false";
+                IsEnabled81 = String.IsNullOrEmpty(sudokuStringArray[80]) ? "true" : "false";
+            }
         }
+
+
 
         private void SetFieldColors(FieldColor[] fieldColorArray)
         {
@@ -3309,11 +3317,8 @@ namespace SudokuApp.ViewModel
         private void Load(string commandString)
         {
             string[] sudokuStringArray = sudokuManager.GetNewSudokuStringArray();
-            if (sudokuStringArray.Length == NumberOfSudokuFields) // For mock testing
-            {
-                DisableFieldsWithFixedNumbers(sudokuStringArray);
-                AssignValuesToFields(sudokuStringArray);
-            }
+            DisableFieldsWithFixedNumbers(sudokuStringArray);
+            AssignValuesToFields(sudokuStringArray);
         }
 
         private ICommand _checkButtonCommand;
@@ -3328,14 +3333,11 @@ namespace SudokuApp.ViewModel
 
         private void CheckAndRefresh(string commandString)
         {
-            string[] checkedFieldValues = new string[NumberOfSudokuFields];
-            if (!sudokuManager.GetCheckedStringArray(GetStringArrayFromFields()).Contains(null))
-            {
-                checkedFieldValues = sudokuManager.GetCheckedStringArray(GetStringArrayFromFields());
-            }
-            //AssignValuesToFields(checkedFieldValues); // Invalid entries have been removed
-            //FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(checkedFieldValues);
-            //SetFieldColors(fieldColorArray);
+            //string[] checkedFieldValues
+            string[] checkedFieldValues = sudokuManager.GetCheckedStringArray(GetStringArrayFromFields());
+            AssignValuesToFields(checkedFieldValues); // Invalid entries have been removed
+            FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(checkedFieldValues);
+            SetFieldColors(fieldColorArray);
 
         }
 
