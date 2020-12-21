@@ -285,87 +285,90 @@ namespace SudokuApp.ViewModel
 
         private void SetFieldColors(FieldColor[] fieldColorArray)
         {
-            FieldColor01 = Enum.GetName(typeof(FieldColor), fieldColorArray[0]);
-            FieldColor02 = Enum.GetName(typeof(FieldColor), fieldColorArray[1]);
-            FieldColor03 = Enum.GetName(typeof(FieldColor), fieldColorArray[2]);
-            FieldColor04 = Enum.GetName(typeof(FieldColor), fieldColorArray[3]);
-            FieldColor05 = Enum.GetName(typeof(FieldColor), fieldColorArray[4]);
-            FieldColor06 = Enum.GetName(typeof(FieldColor), fieldColorArray[5]);
-            FieldColor07 = Enum.GetName(typeof(FieldColor), fieldColorArray[6]);
-            FieldColor08 = Enum.GetName(typeof(FieldColor), fieldColorArray[7]);
-            FieldColor09 = Enum.GetName(typeof(FieldColor), fieldColorArray[8]);
-            FieldColor10 = Enum.GetName(typeof(FieldColor), fieldColorArray[9]);
-            FieldColor11 = Enum.GetName(typeof(FieldColor), fieldColorArray[10]);
-            FieldColor12 = Enum.GetName(typeof(FieldColor), fieldColorArray[11]);
-            FieldColor13 = Enum.GetName(typeof(FieldColor), fieldColorArray[12]);
-            FieldColor14 = Enum.GetName(typeof(FieldColor), fieldColorArray[13]);
-            FieldColor15 = Enum.GetName(typeof(FieldColor), fieldColorArray[14]);
-            FieldColor16 = Enum.GetName(typeof(FieldColor), fieldColorArray[15]);
-            FieldColor17 = Enum.GetName(typeof(FieldColor), fieldColorArray[16]);
-            FieldColor18 = Enum.GetName(typeof(FieldColor), fieldColorArray[17]);
-            FieldColor19 = Enum.GetName(typeof(FieldColor), fieldColorArray[18]);
-            FieldColor20 = Enum.GetName(typeof(FieldColor), fieldColorArray[19]);
-            FieldColor21 = Enum.GetName(typeof(FieldColor), fieldColorArray[20]);
-            FieldColor22 = Enum.GetName(typeof(FieldColor), fieldColorArray[21]);
-            FieldColor23 = Enum.GetName(typeof(FieldColor), fieldColorArray[22]);
-            FieldColor24 = Enum.GetName(typeof(FieldColor), fieldColorArray[23]);
-            FieldColor25 = Enum.GetName(typeof(FieldColor), fieldColorArray[24]);
-            FieldColor26 = Enum.GetName(typeof(FieldColor), fieldColorArray[25]);
-            FieldColor27 = Enum.GetName(typeof(FieldColor), fieldColorArray[26]);
-            FieldColor28 = Enum.GetName(typeof(FieldColor), fieldColorArray[27]);
-            FieldColor29 = Enum.GetName(typeof(FieldColor), fieldColorArray[28]);
-            FieldColor30 = Enum.GetName(typeof(FieldColor), fieldColorArray[29]);
-            FieldColor31 = Enum.GetName(typeof(FieldColor), fieldColorArray[30]);
-            FieldColor32 = Enum.GetName(typeof(FieldColor), fieldColorArray[31]);
-            FieldColor33 = Enum.GetName(typeof(FieldColor), fieldColorArray[32]);
-            FieldColor34 = Enum.GetName(typeof(FieldColor), fieldColorArray[33]);
-            FieldColor35 = Enum.GetName(typeof(FieldColor), fieldColorArray[34]);
-            FieldColor36 = Enum.GetName(typeof(FieldColor), fieldColorArray[35]);
-            FieldColor37 = Enum.GetName(typeof(FieldColor), fieldColorArray[36]);
-            FieldColor38 = Enum.GetName(typeof(FieldColor), fieldColorArray[37]);
-            FieldColor39 = Enum.GetName(typeof(FieldColor), fieldColorArray[38]);
-            FieldColor40 = Enum.GetName(typeof(FieldColor), fieldColorArray[39]);
-            FieldColor41 = Enum.GetName(typeof(FieldColor), fieldColorArray[40]);
-            FieldColor42 = Enum.GetName(typeof(FieldColor), fieldColorArray[41]);
-            FieldColor43 = Enum.GetName(typeof(FieldColor), fieldColorArray[42]);
-            FieldColor44 = Enum.GetName(typeof(FieldColor), fieldColorArray[43]);
-            FieldColor45 = Enum.GetName(typeof(FieldColor), fieldColorArray[44]);
-            FieldColor46 = Enum.GetName(typeof(FieldColor), fieldColorArray[45]);
-            FieldColor47 = Enum.GetName(typeof(FieldColor), fieldColorArray[46]);
-            FieldColor48 = Enum.GetName(typeof(FieldColor), fieldColorArray[47]);
-            FieldColor49 = Enum.GetName(typeof(FieldColor), fieldColorArray[48]);
-            FieldColor50 = Enum.GetName(typeof(FieldColor), fieldColorArray[49]);
-            FieldColor51 = Enum.GetName(typeof(FieldColor), fieldColorArray[50]);
-            FieldColor52 = Enum.GetName(typeof(FieldColor), fieldColorArray[51]);
-            FieldColor53 = Enum.GetName(typeof(FieldColor), fieldColorArray[52]);
-            FieldColor54 = Enum.GetName(typeof(FieldColor), fieldColorArray[53]);
-            FieldColor55 = Enum.GetName(typeof(FieldColor), fieldColorArray[54]);
-            FieldColor56 = Enum.GetName(typeof(FieldColor), fieldColorArray[55]);
-            FieldColor57 = Enum.GetName(typeof(FieldColor), fieldColorArray[56]);
-            FieldColor58 = Enum.GetName(typeof(FieldColor), fieldColorArray[57]);
-            FieldColor59 = Enum.GetName(typeof(FieldColor), fieldColorArray[58]);
-            FieldColor60 = Enum.GetName(typeof(FieldColor), fieldColorArray[59]);
-            FieldColor61 = Enum.GetName(typeof(FieldColor), fieldColorArray[60]);
-            FieldColor62 = Enum.GetName(typeof(FieldColor), fieldColorArray[61]);
-            FieldColor63 = Enum.GetName(typeof(FieldColor), fieldColorArray[62]);
-            FieldColor64 = Enum.GetName(typeof(FieldColor), fieldColorArray[63]);
-            FieldColor65 = Enum.GetName(typeof(FieldColor), fieldColorArray[64]);
-            FieldColor66 = Enum.GetName(typeof(FieldColor), fieldColorArray[65]);
-            FieldColor67 = Enum.GetName(typeof(FieldColor), fieldColorArray[66]);
-            FieldColor68 = Enum.GetName(typeof(FieldColor), fieldColorArray[67]);
-            FieldColor69 = Enum.GetName(typeof(FieldColor), fieldColorArray[68]);
-            FieldColor70 = Enum.GetName(typeof(FieldColor), fieldColorArray[69]);
-            FieldColor71 = Enum.GetName(typeof(FieldColor), fieldColorArray[70]);
-            FieldColor72 = Enum.GetName(typeof(FieldColor), fieldColorArray[71]);
-            FieldColor73 = Enum.GetName(typeof(FieldColor), fieldColorArray[72]);
-            FieldColor74 = Enum.GetName(typeof(FieldColor), fieldColorArray[73]);
-            FieldColor75 = Enum.GetName(typeof(FieldColor), fieldColorArray[74]);
-            FieldColor76 = Enum.GetName(typeof(FieldColor), fieldColorArray[75]);
-            FieldColor77 = Enum.GetName(typeof(FieldColor), fieldColorArray[76]);
-            FieldColor78 = Enum.GetName(typeof(FieldColor), fieldColorArray[77]);
-            FieldColor79 = Enum.GetName(typeof(FieldColor), fieldColorArray[78]);
-            FieldColor80 = Enum.GetName(typeof(FieldColor), fieldColorArray[79]);
-            FieldColor81 = Enum.GetName(typeof(FieldColor), fieldColorArray[80]);
+            if (fieldColorArray.Length == NumberOfSudokuFields) // For mock testing
+            {
+                FieldColor01 = Enum.GetName(typeof(FieldColor), fieldColorArray[0]);
+                FieldColor02 = Enum.GetName(typeof(FieldColor), fieldColorArray[1]);
+                FieldColor03 = Enum.GetName(typeof(FieldColor), fieldColorArray[2]);
+                FieldColor04 = Enum.GetName(typeof(FieldColor), fieldColorArray[3]);
+                FieldColor05 = Enum.GetName(typeof(FieldColor), fieldColorArray[4]);
+                FieldColor06 = Enum.GetName(typeof(FieldColor), fieldColorArray[5]);
+                FieldColor07 = Enum.GetName(typeof(FieldColor), fieldColorArray[6]);
+                FieldColor08 = Enum.GetName(typeof(FieldColor), fieldColorArray[7]);
+                FieldColor09 = Enum.GetName(typeof(FieldColor), fieldColorArray[8]);
+                FieldColor10 = Enum.GetName(typeof(FieldColor), fieldColorArray[9]);
+                FieldColor11 = Enum.GetName(typeof(FieldColor), fieldColorArray[10]);
+                FieldColor12 = Enum.GetName(typeof(FieldColor), fieldColorArray[11]);
+                FieldColor13 = Enum.GetName(typeof(FieldColor), fieldColorArray[12]);
+                FieldColor14 = Enum.GetName(typeof(FieldColor), fieldColorArray[13]);
+                FieldColor15 = Enum.GetName(typeof(FieldColor), fieldColorArray[14]);
+                FieldColor16 = Enum.GetName(typeof(FieldColor), fieldColorArray[15]);
+                FieldColor17 = Enum.GetName(typeof(FieldColor), fieldColorArray[16]);
+                FieldColor18 = Enum.GetName(typeof(FieldColor), fieldColorArray[17]);
+                FieldColor19 = Enum.GetName(typeof(FieldColor), fieldColorArray[18]);
+                FieldColor20 = Enum.GetName(typeof(FieldColor), fieldColorArray[19]);
+                FieldColor21 = Enum.GetName(typeof(FieldColor), fieldColorArray[20]);
+                FieldColor22 = Enum.GetName(typeof(FieldColor), fieldColorArray[21]);
+                FieldColor23 = Enum.GetName(typeof(FieldColor), fieldColorArray[22]);
+                FieldColor24 = Enum.GetName(typeof(FieldColor), fieldColorArray[23]);
+                FieldColor25 = Enum.GetName(typeof(FieldColor), fieldColorArray[24]);
+                FieldColor26 = Enum.GetName(typeof(FieldColor), fieldColorArray[25]);
+                FieldColor27 = Enum.GetName(typeof(FieldColor), fieldColorArray[26]);
+                FieldColor28 = Enum.GetName(typeof(FieldColor), fieldColorArray[27]);
+                FieldColor29 = Enum.GetName(typeof(FieldColor), fieldColorArray[28]);
+                FieldColor30 = Enum.GetName(typeof(FieldColor), fieldColorArray[29]);
+                FieldColor31 = Enum.GetName(typeof(FieldColor), fieldColorArray[30]);
+                FieldColor32 = Enum.GetName(typeof(FieldColor), fieldColorArray[31]);
+                FieldColor33 = Enum.GetName(typeof(FieldColor), fieldColorArray[32]);
+                FieldColor34 = Enum.GetName(typeof(FieldColor), fieldColorArray[33]);
+                FieldColor35 = Enum.GetName(typeof(FieldColor), fieldColorArray[34]);
+                FieldColor36 = Enum.GetName(typeof(FieldColor), fieldColorArray[35]);
+                FieldColor37 = Enum.GetName(typeof(FieldColor), fieldColorArray[36]);
+                FieldColor38 = Enum.GetName(typeof(FieldColor), fieldColorArray[37]);
+                FieldColor39 = Enum.GetName(typeof(FieldColor), fieldColorArray[38]);
+                FieldColor40 = Enum.GetName(typeof(FieldColor), fieldColorArray[39]);
+                FieldColor41 = Enum.GetName(typeof(FieldColor), fieldColorArray[40]);
+                FieldColor42 = Enum.GetName(typeof(FieldColor), fieldColorArray[41]);
+                FieldColor43 = Enum.GetName(typeof(FieldColor), fieldColorArray[42]);
+                FieldColor44 = Enum.GetName(typeof(FieldColor), fieldColorArray[43]);
+                FieldColor45 = Enum.GetName(typeof(FieldColor), fieldColorArray[44]);
+                FieldColor46 = Enum.GetName(typeof(FieldColor), fieldColorArray[45]);
+                FieldColor47 = Enum.GetName(typeof(FieldColor), fieldColorArray[46]);
+                FieldColor48 = Enum.GetName(typeof(FieldColor), fieldColorArray[47]);
+                FieldColor49 = Enum.GetName(typeof(FieldColor), fieldColorArray[48]);
+                FieldColor50 = Enum.GetName(typeof(FieldColor), fieldColorArray[49]);
+                FieldColor51 = Enum.GetName(typeof(FieldColor), fieldColorArray[50]);
+                FieldColor52 = Enum.GetName(typeof(FieldColor), fieldColorArray[51]);
+                FieldColor53 = Enum.GetName(typeof(FieldColor), fieldColorArray[52]);
+                FieldColor54 = Enum.GetName(typeof(FieldColor), fieldColorArray[53]);
+                FieldColor55 = Enum.GetName(typeof(FieldColor), fieldColorArray[54]);
+                FieldColor56 = Enum.GetName(typeof(FieldColor), fieldColorArray[55]);
+                FieldColor57 = Enum.GetName(typeof(FieldColor), fieldColorArray[56]);
+                FieldColor58 = Enum.GetName(typeof(FieldColor), fieldColorArray[57]);
+                FieldColor59 = Enum.GetName(typeof(FieldColor), fieldColorArray[58]);
+                FieldColor60 = Enum.GetName(typeof(FieldColor), fieldColorArray[59]);
+                FieldColor61 = Enum.GetName(typeof(FieldColor), fieldColorArray[60]);
+                FieldColor62 = Enum.GetName(typeof(FieldColor), fieldColorArray[61]);
+                FieldColor63 = Enum.GetName(typeof(FieldColor), fieldColorArray[62]);
+                FieldColor64 = Enum.GetName(typeof(FieldColor), fieldColorArray[63]);
+                FieldColor65 = Enum.GetName(typeof(FieldColor), fieldColorArray[64]);
+                FieldColor66 = Enum.GetName(typeof(FieldColor), fieldColorArray[65]);
+                FieldColor67 = Enum.GetName(typeof(FieldColor), fieldColorArray[66]);
+                FieldColor68 = Enum.GetName(typeof(FieldColor), fieldColorArray[67]);
+                FieldColor69 = Enum.GetName(typeof(FieldColor), fieldColorArray[68]);
+                FieldColor70 = Enum.GetName(typeof(FieldColor), fieldColorArray[69]);
+                FieldColor71 = Enum.GetName(typeof(FieldColor), fieldColorArray[70]);
+                FieldColor72 = Enum.GetName(typeof(FieldColor), fieldColorArray[71]);
+                FieldColor73 = Enum.GetName(typeof(FieldColor), fieldColorArray[72]);
+                FieldColor74 = Enum.GetName(typeof(FieldColor), fieldColorArray[73]);
+                FieldColor75 = Enum.GetName(typeof(FieldColor), fieldColorArray[74]);
+                FieldColor76 = Enum.GetName(typeof(FieldColor), fieldColorArray[75]);
+                FieldColor77 = Enum.GetName(typeof(FieldColor), fieldColorArray[76]);
+                FieldColor78 = Enum.GetName(typeof(FieldColor), fieldColorArray[77]);
+                FieldColor79 = Enum.GetName(typeof(FieldColor), fieldColorArray[78]);
+                FieldColor80 = Enum.GetName(typeof(FieldColor), fieldColorArray[79]);
+                FieldColor81 = Enum.GetName(typeof(FieldColor), fieldColorArray[80]);
+            }
         }
 
         #region INotifyFieldValues
@@ -3333,12 +3336,10 @@ namespace SudokuApp.ViewModel
 
         private void CheckAndRefresh(string commandString)
         {
-            //string[] checkedFieldValues
             string[] checkedFieldValues = sudokuManager.GetCheckedStringArray(GetStringArrayFromFields());
             AssignValuesToFields(checkedFieldValues); // Invalid entries have been removed
             FieldColor[] fieldColorArray = sudokuManager.GetFieldColorArray(checkedFieldValues);
             SetFieldColors(fieldColorArray);
-
         }
 
         private ICommand _solveButtonCommand;

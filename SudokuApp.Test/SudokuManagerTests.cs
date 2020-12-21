@@ -186,5 +186,42 @@ namespace SudokuApp
             Assert.AreEqual(false, result.Contains(FieldColor.Red));
             Assert.AreEqual(true, result.Contains(FieldColor.Green));
         }
+
+        [TestMethod]
+        public void TestNewSudokuHas81Fields()
+        {
+            // Arrange
+            int expectedResult = NumberOfSudokuFields;
+
+            // Act
+            int result = this.testee.GetNewSudokuStringArray().Length;
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void TestNewSudokuHasOnlyValidEntries()
+        {
+            // Arrange
+            int expectedResult = NumberOfSudokuFields;
+            string[] validEntries = new string[] { "", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+            // Act
+            var newSudokuStringArray = this.testee.GetNewSudokuStringArray();
+            bool hasOnlyValidEntries = true;
+            foreach (var entry in newSudokuStringArray)
+            {
+                if (!validEntries.Contains(entry))
+                {
+                    hasOnlyValidEntries = false;
+                }
+            }
+
+            // Assert
+            Assert.AreEqual(true, hasOnlyValidEntries);
+        }
+
+
     }
 }

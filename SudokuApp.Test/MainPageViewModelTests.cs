@@ -46,7 +46,7 @@ namespace SudokuApp
             this.testee.CheckButtonCommand.Execute("");
 
             // Assert
-            this.sudokuMock.Verify(m => m.GetCheckedStringArray(sudokuStringArray), Times.AtLeastOnce);
+            this.sudokuMock.Verify(m => m.GetCheckedStringArray(sudokuStringArray), Times.Once);
         }
     }
 }
