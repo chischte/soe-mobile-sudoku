@@ -10,24 +10,17 @@ namespace SudokuApp.Solver
         private const int SudokuSquareLength = 9;
         private int MaxFieldValue = 9;
         private int[,] sudokuToSolve;
-        private int[,] solvedSudoku;
         private int currentFieldRow;
         private int currentFieldCol;
-
-        public SudokuSolver()
-        {
-            this.solvedSudoku = new int[SudokuSquareLength, SudokuSquareLength];
-            this.sudokuToSolve = new int[SudokuSquareLength, SudokuSquareLength];
-        }
-
 
         public int[] GetSolvedSudoku(int[] sudokuToSolve)
         {
             int[,] twoDimensionalSudoku = GenerateTwoDimensionalArray(sudokuToSolve);
             this.sudokuToSolve = twoDimensionalSudoku;
-            StartSolvingSudoku(this.sudokuToSolve);
-            int[] solvedSudoku = GenerateOneDimensionalArray(twoDimensionalSudoku);
-            return solvedSudoku;
+            RecursiveSolver();
+            int[,] solverResult = this.sudokuToSolve;
+            int[] oneDimensionalSolverResult = GenerateOneDimensionalArray(solverResult);
+            return oneDimensionalSolverResult;
         }
 
         private int[,] GenerateTwoDimensionalArray(int[] oneDimensionalArray)
@@ -66,19 +59,7 @@ namespace SudokuApp.Solver
             return oneDimensionalArray;
         }
 
-        public int[,] StartSolvingSudoku(int[,] puzzleToSolve)
-        {
-            sudokuToSolve = puzzleToSolve;
-
-            if (solver())
-            {
-                return solvedSudoku;
-            }
-
-            return sudokuToSolve;
-        }
-
-        public bool solver()
+        public bool RecursiveSolver()
         {
             int rowsolver = 0;
             int colsolver = 0;
@@ -86,59 +67,52 @@ namespace SudokuApp.Solver
 
             if (isSudokuFullyFilledOut(sudokuToSolve))
             {
-                solvedSudoku = sudokuToSolve;
                 return true;
             }
 
             // Locate an empty field
-                for (int checkRow = 0; checkRow < SudokuSquareLength; checkRow++)
+            for (int checkRow = 0; checkRow < SudokuSquareLength; checkRow++)
+            {
+                for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
                 {
-                    for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
+                    if (sudokuToSolve[checkRow, checkColumn] == 0)
                     {
-                        if (sudokuToSolve[checkRow, checkColumn] == 0)
-                        {
-                            rowsolver = checkRow;
-                            colsolver = checkColumn;
-                        }
+                        rowsolver = checkRow;
+                        colsolver = checkColumn;
                     }
                 }
-            
+            }
             currentFieldRow = rowsolver;
             currentFieldCol = colsolver;
 
             possibilityArraySolver = CheckAllTheSudokuRulesOfTheEntries();
+
+            // It needs to be equal to the size of the Sudoku length otherwise the last field could not be check by all the Sudoku rules
+            for (int i = 0; i < 10; i++)
             {
-                // It needs to be equal to the size of the Sudoku length otherwise the last field could not be check by all the Sudoku rules
-                for (int i = 0; i < 10; i++)
+                if (isSudokuFullyFilledOut(sudokuToSolve))
                 {
-                    if (isSudokuFullyFilledOut(sudokuToSolve))
-                    {
-                        break;
-                    }
+                    break;
+                }
 
-                    if (i < 9 && possibilityArraySolver[i] != 0)
-                    {
-                        sudokuToSolve[rowsolver, colsolver] = possibilityArraySolver[i];
-                        solver();
+                if (i < 9 && possibilityArraySolver[i] != 0)
+                {
+                    sudokuToSolve[rowsolver, colsolver] = possibilityArraySolver[i];
+                    RecursiveSolver();
 
-                    }
-                    else if (i == 8 || i == 9)
-                    {
-                        sudokuToSolve[rowsolver, colsolver] = 0;
-                    }
+                }
+                else if (i == 8 || i == 9)
+                {
+                    sudokuToSolve[rowsolver, colsolver] = 0;
                 }
             }
-
             return false;
         }
-
-        //private void
 
         private int[] CheckAllTheSudokuRulesOfTheEntries()
         {
             int[] possibilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            //possibilityArray = SearchSectorPossibilities(getTheThreeByThreeGrid(currentFieldRow), getTheThreeByThreeGrid(currentFieldCol), possibilityArray);
             possibilityArray = SearchSectorPossibilities_V2(possibilityArray);
             possibilityArray = SearchHorizontalPossibilities(possibilityArray);
             possibilityArray = SearchVerticalPossibilities(possibilityArray);
@@ -162,7 +136,6 @@ namespace SudokuApp.Solver
                 }
                 ConversionPossibilityArray++;
             }
-
             return possibilityArray;
         }
 
