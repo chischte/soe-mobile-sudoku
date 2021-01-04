@@ -6,21 +6,20 @@ namespace SudokuApp.Solver
 {
     class SudokuSolver
     {
-        const int NumberOfSudokuFields = 81;
-        const int SudokuSquareLength = 9;
+        private const int NumberOfSudokuFields = 81;
+        private const int SudokuSquareLength = 9;
         private int[,] sudokuToSolve;
         private int[,] solvedSudoku;
-        private int gridSizeSudoku=9;
         private int row;
         private int col;
 
         public SudokuSolver()
         {
-            this.solvedSudoku=new int[SudokuSquareLength,SudokuSquareLength];
-            this.sudokuToSolve=new int[SudokuSquareLength,SudokuSquareLength];
+            this.solvedSudoku = new int[SudokuSquareLength, SudokuSquareLength];
+            this.sudokuToSolve = new int[SudokuSquareLength, SudokuSquareLength];
         }
-        
-        
+
+
         public int[] GetSolvedSudoku(int[] sudokuToSolve)
         {
             int[,] twoDimensionalSudoku = GenerateTwoDimensionalArray(sudokuToSolve);
@@ -33,16 +32,16 @@ namespace SudokuApp.Solver
         private int[,] GenerateTwoDimensionalArray(int[] oneDimensionalArray)
         {
             int[,] twoDimensionalArray = new int[SudokuSquareLength, SudokuSquareLength];
-            int row = 0;
-            int column = 0;
+            int checkRow = 0;
+            int checkColumn = 0;
             for (int i = 0; i < NumberOfSudokuFields; i++)
             {
-                twoDimensionalArray[row, column] = oneDimensionalArray[i];
-                column++;
-                if (column == SudokuSquareLength)
+                twoDimensionalArray[checkRow, checkColumn] = oneDimensionalArray[i];
+                checkColumn++;
+                if (checkColumn == SudokuSquareLength)
                 {
-                    row++;
-                    column = 0;
+                    checkRow++;
+                    checkColumn = 0;
                 }
             }
             return twoDimensionalArray;
@@ -51,23 +50,21 @@ namespace SudokuApp.Solver
         private int[] GenerateOneDimensionalArray(int[,] twoDimensionalArray)
         {
             int[] oneDimensionalArray = new int[NumberOfSudokuFields];
-            int row = 0;
-            int column = 0;
+            int checkRow = 0;
+            int checkColumn = 0;
             for (int i = 0; i < NumberOfSudokuFields; i++)
             {
-                oneDimensionalArray[i] = twoDimensionalArray[row, column];
-                column++;
-                if (column == SudokuSquareLength)
+                oneDimensionalArray[i] = twoDimensionalArray[checkRow, checkColumn];
+                checkColumn++;
+                if (checkColumn == SudokuSquareLength)
                 {
-                    row++;
-                    column = 0;
+                    checkRow++;
+                    checkColumn = 0;
                 }
 
             }
             return oneDimensionalArray;
         }
-
-
 
         public int[,] StartSolvingSudoku(int[,] puzzleToSolve)
         {
@@ -81,33 +78,28 @@ namespace SudokuApp.Solver
             return sudokuToSolve;
         }
 
-
         public bool solver()
         {
             int rowsolver = 0;
             int colsolver = 0;
             int[] possibilityArraySolver = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            if (isSudokuFullyFilledOut(gridSizeSudoku, sudokuToSolve))
+            if (isSudokuFullyFilledOut(sudokuToSolve))
             {
-                // this is the place where the solved sudoku goes to the Gui
                 solvedSudoku = sudokuToSolve;
-
                 return true;
             }
-            else
             {
-            search:
                 {
                     // detect first empty field
-                    for (int x = 0; x < gridSizeSudoku; x++)
+                    for (int checkRow = 0; checkRow < SudokuSquareLength; checkRow++)
                     {
-                        for (int y = 0; y < gridSizeSudoku; y++)
+                        for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
                         {
-                            if (sudokuToSolve[x,y] == 0)
+                            if (sudokuToSolve[checkRow, checkColumn] == 0)
                             {
-                                rowsolver = x;
-                                colsolver = y;
+                                rowsolver = checkRow;
+                                colsolver = checkColumn;
                                 break;
                             }
                         }
@@ -118,37 +110,33 @@ namespace SudokuApp.Solver
                 col = colsolver;
 
                 possibilityArraySolver = CheckAllTheSudokuRulesOfTheEntries();
-
-                try
                 {
                     // It needs to be equal to the size of the Sudoku length otherwise the last field could not be check by all the Sudoku rules
                     for (int i = 0; i < 10; i++)
                     {
-                        if (isSudokuFullyFilledOut(gridSizeSudoku, sudokuToSolve))
+                        if (isSudokuFullyFilledOut(sudokuToSolve))
                         {
                             break;
                         }
 
                         if (i < 9 && possibilityArraySolver[i] != 0)
                         {
-                            sudokuToSolve[rowsolver,colsolver] = possibilityArraySolver[i];
-                            // ToDo get out of the loop when solver returns true
+                            sudokuToSolve[rowsolver, colsolver] = possibilityArraySolver[i];
                             solver();
 
                         }
                         else if (i == 8 || i == 9)
                         {
-                            sudokuToSolve[rowsolver,colsolver] = 0;
+                            sudokuToSolve[rowsolver, colsolver] = 0;
                         }
                     }
-                }
-                catch (Exception e)
-                {
                 }
             }
 
             return false;
         }
+
+        //private void
 
         private int[] CheckAllTheSudokuRulesOfTheEntries()
         {
@@ -158,8 +146,8 @@ namespace SudokuApp.Solver
             possibilityArray = IsTheThreeByThreeRuleValid(getTheThreeByThreeGrid(row), getTheThreeByThreeGrid(col), possibilityArray);
 
             // Check if the horizontal row and if the vertical col is valid
-            possibilityArray = checkIfHorizontalIsValid(possibilityArray, gridSizeSudoku);
-            possibilityArray = checkIfVerticalIsValid(possibilityArray, gridSizeSudoku);
+            possibilityArray = checkIfHorizontalIsValid(possibilityArray);
+            possibilityArray = checkIfVerticalIsValid(possibilityArray);
 
             // Change the array to the possible numbers
             possibilityArray = ChangeToPossibleNumbers(possibilityArray);
@@ -170,7 +158,7 @@ namespace SudokuApp.Solver
         private int[] ChangeToPossibleNumbers(int[] possibilityArray)
         {
             int ConversionPossibilityArray = 1;
-            for (int i = 0; i < gridSizeSudoku; i++)
+            for (int i = 0; i < SudokuSquareLength; i++)
             {
                 if (possibilityArray[i] == 1)
                 {
@@ -212,13 +200,13 @@ namespace SudokuApp.Solver
             return possibilityArray;
         }
 
-        private int[] checkIfVerticalIsValid(int[] possibilityArray, int gridSize)
+        private int[] checkIfVerticalIsValid(int[] possibilityArray)
         {
-            for (int i = 0; i < gridSize; i++)
+            for (int i = 0; i < SudokuSquareLength; i++)
             {
                 for (int j = 1; j < 10; j++)
                 {
-                    if (sudokuToSolve[i,col] == j)
+                    if (sudokuToSolve[i, col] == j)
                     {
                         possibilityArray[j - 1] = 1;
                     }
@@ -228,13 +216,13 @@ namespace SudokuApp.Solver
             return possibilityArray;
         }
 
-        private bool isSudokuFullyFilledOut(int gridSize, int[,] loader)
+        private bool isSudokuFullyFilledOut(int[,] sudokuToSolve)
         {
-            for (int y = 0; y < gridSize; y++)
+            for (int y = 0; y < SudokuSquareLength; y++)
             {
-                for (int x = 0; x < gridSize; x++)
+                for (int x = 0; x < SudokuSquareLength; x++)
                 {
-                    if (loader[x,y] == 0)
+                    if (sudokuToSolve[x, y] == 0)
                     {
                         return false;
                     }
@@ -244,13 +232,13 @@ namespace SudokuApp.Solver
             return true;
         }
 
-        private int[] checkIfHorizontalIsValid(int[] possibilityArray, int gridSize)
+        private int[] checkIfHorizontalIsValid(int[] possibilityArray)
         {
-            for (int i = 0; i < gridSize; i++)
+            for (int i = 0; i < SudokuSquareLength; i++)
             {
                 for (int j = 1; j < 10; j++)
                 {
-                    if (sudokuToSolve[row,i] == j)
+                    if (sudokuToSolve[row, i] == j)
                     {
                         possibilityArray[j - 1] = 1;
                     }
@@ -275,6 +263,5 @@ namespace SudokuApp.Solver
                 return 6;
             }
         }
-
     }
 }
