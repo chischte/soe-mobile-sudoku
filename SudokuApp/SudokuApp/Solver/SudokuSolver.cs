@@ -63,7 +63,6 @@ namespace SudokuApp.Solver
         {
             int rowsolver = 0;
             int colsolver = 0;
-            int[] possibilityArraySolver = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             if (isSudokuFullyFilledOut(sudokuToSolve))
             {
@@ -85,35 +84,36 @@ namespace SudokuApp.Solver
             currentFieldRow = rowsolver;
             currentFieldCol = colsolver;
 
-            possibilityArraySolver = CheckAllTheSudokuRulesOfTheEntries();
+            int[] possibleFieldValues = GetPossibleNumbers();
 
-            // It needs to be equal to the size of the Sudoku length otherwise the last field could not be check by all the Sudoku rules
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i <= possibleFieldValues.Length; i++)
             {
                 if (isSudokuFullyFilledOut(sudokuToSolve))
                 {
                     break;
                 }
-
-                if (i < 9 && possibilityArraySolver[i] != 0)
+                if (i == 9)
                 {
-                    sudokuToSolve[rowsolver, colsolver] = possibilityArraySolver[i];
+                    // Set field zero and abort this recursion:
+                    sudokuToSolve[rowsolver, colsolver] = 0;
+                }
+                else if (possibleFieldValues[i] != 0)
+                {
+                    // Assign value to current field and continue with the next field:
+                    sudokuToSolve[rowsolver, colsolver] = possibleFieldValues[i];
                     RecursiveSolver();
 
                 }
-                else if (i == 8 || i == 9)
-                {
-                    sudokuToSolve[rowsolver, colsolver] = 0;
-                }
+
             }
             return false;
         }
 
-        private int[] CheckAllTheSudokuRulesOfTheEntries()
+        private int[] GetPossibleNumbers()
         {
             int[] possibilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            possibilityArray = SearchSectorPossibilities_V2(possibilityArray);
+            possibilityArray = SearchSectorPossibilities(possibilityArray);
             possibilityArray = SearchHorizontalPossibilities(possibilityArray);
             possibilityArray = SearchVerticalPossibilities(possibilityArray);
             possibilityArray = ChangeToPossibleNumbers(possibilityArray);
@@ -154,7 +154,7 @@ namespace SudokuApp.Solver
             return true;
         }
 
-        private int[] SearchSectorPossibilities_V2(int[] possibilityArray)
+        private int[] SearchSectorPossibilities(int[] possibilityArray)
         {
             int sectorOfCurrentField = GetSector(currentFieldRow, currentFieldCol);
             for (int row = 0; row < SudokuSquareLength; row++)
