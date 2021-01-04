@@ -142,9 +142,9 @@ namespace SudokuApp.Solver
         {
             int[] possibilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            possibilityArray = IsTheThreeByThreeRuleValid(getTheThreeByThreeGrid(currentFieldRow), getTheThreeByThreeGrid(currentFieldCol), possibilityArray);
-            possibilityArray = CheckIfHorizontalIsValid(possibilityArray);
-            possibilityArray = CheckIfVerticalIsValid(possibilityArray);
+            possibilityArray = SearchSectorPossibilities(getTheThreeByThreeGrid(currentFieldRow), getTheThreeByThreeGrid(currentFieldCol), possibilityArray);
+            possibilityArray = SearchHorizontalPossibilities(possibilityArray);
+            possibilityArray = SearchVerticalPossibilities(possibilityArray);
             possibilityArray = ChangeToPossibleNumbers(possibilityArray);
 
             return possibilityArray;
@@ -169,22 +169,24 @@ namespace SudokuApp.Solver
             return possibilityArray;
         }
 
-        private int[] IsTheThreeByThreeRuleValid(int threeByThreeRow, int threeByThreeCol, int[] possibilityArray)
+        private int[] SearchSectorPossibilities(int threeByThreeRow, int threeByThreeCol, int[] possibilityArray)
         {
             int loader;
             for (int row = 0; row < 3; row++)
             {
+
+                //if field sector=searchsetor && fieldvale !=0 ...
                 for (int col = 0; col < 3; col++)
                 {
                     loader = sudokuToSolve[threeByThreeRow + row, threeByThreeCol + col];
 
                     if (loader != 0)
                     {
-                        for (int a = 1; a < 10; a++)
+                        for (int possibilityArrayValue = 1; possibilityArrayValue < MaxFieldValue + 1; possibilityArrayValue++)
                         {
-                            if (loader == a)
+                            if (loader == possibilityArrayValue)
                             {
-                                possibilityArray[a - 1] = 1;
+                                possibilityArray[possibilityArrayValue - 1] = 1;
                                 break;
                             }
                         }
@@ -210,7 +212,7 @@ namespace SudokuApp.Solver
             return true;
         }
 
-        private int[] CheckIfVerticalIsValid(int[] possibilityArray)
+        private int[] SearchVerticalPossibilities(int[] possibilityArray)
         {
             for (int checkRow = 0; checkRow < SudokuSquareLength; checkRow++)
             {
@@ -227,7 +229,7 @@ namespace SudokuApp.Solver
         }
       
 
-        private int[] CheckIfHorizontalIsValid(int[] possibilityArray)
+        private int[] SearchHorizontalPossibilities(int[] possibilityArray)
         {
             for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
             {
