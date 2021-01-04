@@ -62,7 +62,6 @@ namespace SudokuApp.Solver
                     checkRow++;
                     checkColumn = 0;
                 }
-
             }
             return oneDimensionalArray;
         }
@@ -142,7 +141,8 @@ namespace SudokuApp.Solver
         {
             int[] possibilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            possibilityArray = SearchSectorPossibilities(getTheThreeByThreeGrid(currentFieldRow), getTheThreeByThreeGrid(currentFieldCol), possibilityArray);
+            //possibilityArray = SearchSectorPossibilities(getTheThreeByThreeGrid(currentFieldRow), getTheThreeByThreeGrid(currentFieldCol), possibilityArray);
+            possibilityArray = SearchSectorPossibilities_V2(possibilityArray);
             possibilityArray = SearchHorizontalPossibilities(possibilityArray);
             possibilityArray = SearchVerticalPossibilities(possibilityArray);
             possibilityArray = ChangeToPossibleNumbers(possibilityArray);
@@ -169,47 +169,54 @@ namespace SudokuApp.Solver
             return possibilityArray;
         }
 
-        private int[] SearchSectorPossibilities(int threeByThreeRow, int threeByThreeCol, int[] possibilityArray)
-        {
-            int loader;
-            for (int row = 0; row < 3; row++)
-            {
-
-                //if field sector=searchsetor && fieldvale !=0 ...
-                for (int col = 0; col < 3; col++)
-                {
-                    loader = sudokuToSolve[threeByThreeRow + row, threeByThreeCol + col];
-
-                    if (loader != 0)
-                    {
-                        for (int possibilityArrayValue = 1; possibilityArrayValue < MaxFieldValue + 1; possibilityArrayValue++)
-                        {
-                            if (loader == possibilityArrayValue)
-                            {
-                                possibilityArray[possibilityArrayValue - 1] = 1;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-
-            return possibilityArray;
-        }
         private bool isSudokuFullyFilledOut(int[,] sudokuToSolve)
         {
-            for (int y = 0; y < SudokuSquareLength; y++)
+            for (int row = 0; row < SudokuSquareLength; row++)
             {
-                for (int x = 0; x < SudokuSquareLength; x++)
+                for (int column = 0; column < SudokuSquareLength; column++)
                 {
-                    if (sudokuToSolve[x, y] == 0)
+                    if (sudokuToSolve[column, row] == 0)
                     {
                         return false;
                     }
                 }
             }
-
             return true;
+        }
+
+        private int[] SearchSectorPossibilities_V2(int[] possibilityArray)
+        {
+            int sectorOfCurrentField = GetSector(currentFieldRow, currentFieldCol);
+            for (int row = 0; row < SudokuSquareLength; row++)
+            {
+                for (int column = 0; column < SudokuSquareLength; column++)
+                {
+                    int compareValue = sudokuToSolve[row, column];
+                    int compareSector = GetSector(row, column);
+                    if (sectorOfCurrentField == compareSector && compareValue != 0)
+                    {
+                        possibilityArray[compareValue - 1] = 1;
+                    }
+                }
+            }
+            return possibilityArray;
+        }
+
+        private int GetSector(int row, int column)
+        {
+            int sector = 0;
+            while (column > 2)
+            {
+                column -= 3;
+                sector++;
+            }
+
+            while (row > 2)
+            {
+                row -= 3;
+                sector += 3;
+            }
+            return sector;
         }
 
         private int[] SearchVerticalPossibilities(int[] possibilityArray)
@@ -227,13 +234,12 @@ namespace SudokuApp.Solver
 
             return possibilityArray;
         }
-      
 
         private int[] SearchHorizontalPossibilities(int[] possibilityArray)
         {
             for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
             {
-                for (int possibilityArrayValue = 1; possibilityArrayValue < MaxFieldValue+1; possibilityArrayValue++)
+                for (int possibilityArrayValue = 1; possibilityArrayValue < MaxFieldValue + 1; possibilityArrayValue++)
                 {
                     if (sudokuToSolve[currentFieldRow, checkColumn] == possibilityArrayValue)
                     {
@@ -243,22 +249,6 @@ namespace SudokuApp.Solver
             }
 
             return possibilityArray;
-        }
-
-        private int getTheThreeByThreeGrid(int number)
-        {
-            if (number >= 0 && number <= 2)
-            {
-                return 0;
-            }
-            else if (number >= 3 && number <= 5)
-            {
-                return 3;
-            }
-            else
-            {
-                return 6;
-            }
         }
     }
 }
