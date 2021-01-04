@@ -90,8 +90,7 @@ namespace SudokuApp.Solver
                 return true;
             }
 
-            {
-                // detect first empty field
+            // Locate an empty field
                 for (int checkRow = 0; checkRow < SudokuSquareLength; checkRow++)
                 {
                     for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
@@ -100,12 +99,10 @@ namespace SudokuApp.Solver
                         {
                             rowsolver = checkRow;
                             colsolver = checkColumn;
-                            break;
                         }
                     }
                 }
-            }
-
+            
             currentFieldRow = rowsolver;
             currentFieldCol = colsolver;
 
