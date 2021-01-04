@@ -11,7 +11,7 @@ namespace SudokuApp.Solver
         private int MaxFieldValue = 9;
         private int[,] sudokuToSolve;
         private int currentFieldRow;
-        private int currentFieldCol;
+        private int currentFieldColumn;
 
         public int[] GetSolvedSudoku(int[] sudokuToSolve)
         {
@@ -61,31 +61,32 @@ namespace SudokuApp.Solver
 
         public bool RecursiveSolver()
         {
-            int rowsolver = 0;
-            int colsolver = 0;
-
             if (isSudokuFullyFilledOut(sudokuToSolve))
             {
                 return true;
             }
 
-            // Locate an empty field
+            // Locate an empty field:
+            int recursiveFieldRow = 0;
+            int recursiveFieldColumn = 0;
+            
             for (int checkRow = 0; checkRow < SudokuSquareLength; checkRow++)
             {
                 for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
                 {
                     if (sudokuToSolve[checkRow, checkColumn] == 0)
                     {
-                        rowsolver = checkRow;
-                        colsolver = checkColumn;
+                        recursiveFieldRow = checkRow;
+                        recursiveFieldColumn = checkColumn;
                     }
                 }
             }
-            currentFieldRow = rowsolver;
-            currentFieldCol = colsolver;
+            currentFieldRow = recursiveFieldRow;
+            currentFieldColumn = recursiveFieldColumn;
 
             int[] possibleFieldValues = GetPossibleNumbers();
 
+            // This for loop is the core of the recursive solver:
             for (int i = 0; i <= possibleFieldValues.Length; i++)
             {
                 if (isSudokuFullyFilledOut(sudokuToSolve))
@@ -96,15 +97,15 @@ namespace SudokuApp.Solver
                 {
                     // No Possible number found!
                     // Set field zero and abort this recursion:
-                    sudokuToSolve[rowsolver, colsolver] = 0;
+                    sudokuToSolve[recursiveFieldRow, recursiveFieldColumn] = 0;
                 }
                 else if (possibleFieldValues[i] != 0)
                 {
                     // Assign value to current field and continue with the next field:
-                    sudokuToSolve[rowsolver, colsolver] = possibleFieldValues[i];
+                    sudokuToSolve[recursiveFieldRow, recursiveFieldColumn] = possibleFieldValues[i];
+                    // Entry point of the recursion:
                     RecursiveSolver();
                 }
-
             }
             return false;
         }
@@ -156,7 +157,7 @@ namespace SudokuApp.Solver
 
         private int[] SearchSectorPossibilities(int[] possibilityArray)
         {
-            int sectorOfCurrentField = GetSector(currentFieldRow, currentFieldCol);
+            int sectorOfCurrentField = GetSector(currentFieldRow, currentFieldColumn);
             for (int row = 0; row < SudokuSquareLength; row++)
             {
                 for (int column = 0; column < SudokuSquareLength; column++)
@@ -195,13 +196,12 @@ namespace SudokuApp.Solver
             {
                 for (int possibilityArrayValue = 1; possibilityArrayValue < MaxFieldValue + 1; possibilityArrayValue++)
                 {
-                    if (sudokuToSolve[checkRow, currentFieldCol] == possibilityArrayValue)
+                    if (sudokuToSolve[checkRow, currentFieldColumn] == possibilityArrayValue)
                     {
                         possibilityArray[possibilityArrayValue - 1] = 1;
                     }
                 }
             }
-
             return possibilityArray;
         }
 
@@ -217,7 +217,6 @@ namespace SudokuApp.Solver
                     }
                 }
             }
-
             return possibilityArray;
         }
     }
