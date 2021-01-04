@@ -89,49 +89,49 @@ namespace SudokuApp.Solver
                 solvedSudoku = sudokuToSolve;
                 return true;
             }
+
             {
+                // detect first empty field
+                for (int checkRow = 0; checkRow < SudokuSquareLength; checkRow++)
                 {
-                    // detect first empty field
-                    for (int checkRow = 0; checkRow < SudokuSquareLength; checkRow++)
+                    for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
                     {
-                        for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
+                        if (sudokuToSolve[checkRow, checkColumn] == 0)
                         {
-                            if (sudokuToSolve[checkRow, checkColumn] == 0)
-                            {
-                                rowsolver = checkRow;
-                                colsolver = checkColumn;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                currentFieldRow = rowsolver;
-                currentFieldCol = colsolver;
-
-                possibilityArraySolver = CheckAllTheSudokuRulesOfTheEntries();
-                {
-                    // It needs to be equal to the size of the Sudoku length otherwise the last field could not be check by all the Sudoku rules
-                    for (int i = 0; i < 10; i++)
-                    {
-                        if (isSudokuFullyFilledOut(sudokuToSolve))
-                        {
+                            rowsolver = checkRow;
+                            colsolver = checkColumn;
                             break;
-                        }
-
-                        if (i < 9 && possibilityArraySolver[i] != 0)
-                        {
-                            sudokuToSolve[rowsolver, colsolver] = possibilityArraySolver[i];
-                            solver();
-
-                        }
-                        else if (i == 8 || i == 9)
-                        {
-                            sudokuToSolve[rowsolver, colsolver] = 0;
                         }
                     }
                 }
             }
+
+            currentFieldRow = rowsolver;
+            currentFieldCol = colsolver;
+
+            possibilityArraySolver = CheckAllTheSudokuRulesOfTheEntries();
+            {
+                // It needs to be equal to the size of the Sudoku length otherwise the last field could not be check by all the Sudoku rules
+                for (int i = 0; i < 10; i++)
+                {
+                    if (isSudokuFullyFilledOut(sudokuToSolve))
+                    {
+                        break;
+                    }
+
+                    if (i < 9 && possibilityArraySolver[i] != 0)
+                    {
+                        sudokuToSolve[rowsolver, colsolver] = possibilityArraySolver[i];
+                        solver();
+
+                    }
+                    else if (i == 8 || i == 9)
+                    {
+                        sudokuToSolve[rowsolver, colsolver] = 0;
+                    }
+                }
+            }
+
             return false;
         }
 
