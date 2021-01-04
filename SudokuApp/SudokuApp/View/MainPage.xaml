@@ -1023,9 +1023,9 @@
             Grid.Column="9"
             Grid.ColumnSpan="3"
             BackgroundColor="Gray"
+            Command="{Binding SolveButtonCommand}"
             FontAttributes="Bold"
             FontSize="20"
-            IsEnabled="false"
             Text="SOLVE"
             VerticalOptions="Center" />
 

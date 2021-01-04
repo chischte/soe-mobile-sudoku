@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
+using SudokuApp.Solver;
 using SudokuApp.SudokuProvider;
 using SudokuApp.view;
 
@@ -17,10 +18,12 @@ namespace SudokuApp.Model
         const int SudokuSquareLength = 9;
 
         private readonly SudokuParser sudokuParser;
+        private SudokuSolver sudokuSolver;
 
         public SudokuManager()
         {
             this.sudokuParser = new SudokuParser();
+            this.sudokuSolver = new SudokuSolver();
         }
 
         #region public methods -------------------------------------------------
@@ -41,9 +44,17 @@ namespace SudokuApp.Model
                 2, 8, 7, 4, 1, 9, 6, 3, 5,
                 3, 4, 5, 2, 8, 6, 1, 7, 9
             };
- 
 
             return ConvertIntToStringArray(sudokuIntArray);
+        }
+
+        public string[] GetSolvedSudoku(string[] sudokuStringArray)
+        {
+            int[] sudokuIntArray = ConvertStringToIntArray(sudokuStringArray);
+            sudokuIntArray = RemoveInvalidEntries(sudokuIntArray);
+            sudokuIntArray = sudokuSolver.GetSolvedSudoku(sudokuIntArray);
+            string[] solvedSudoku = ConvertIntToStringArray(sudokuIntArray);
+            return solvedSudoku;
         }
 
         public string[] GetCheckedStringArray(string[] sudokuStringArray)

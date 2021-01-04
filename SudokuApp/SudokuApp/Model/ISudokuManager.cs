@@ -13,6 +13,7 @@ namespace SudokuApp.Model
     {
         string[] GetNewSudokuStringArray();
         string[] GetCheckedStringArray(string[] sudokuStringArray);
+        string[] GetSolvedSudoku(string[] sudokuStringArray);
         FieldColor[] GetFieldColorArray(string[] sudokuStringArray);
     }
 }

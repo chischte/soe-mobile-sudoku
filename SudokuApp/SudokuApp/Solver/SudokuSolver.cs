@@ -11,16 +11,14 @@ namespace SudokuApp.Solver
 
         public int[] GetSolvedSudoku(int[] sudokuToSolve)
         {
-
-
             int[] solvedSudoku = new int[NumberOfSudokuFields];
             return solvedSudoku;
         }
 
-        private int[][] GenerateTwoDimensionalArray(int[] sudokuToSolve)
+        private int[,] GenerateTwoDimensionalArray(int[] sudokuToSolve)
         {
-            int[][] TwoDimensionalSudoku = new int[SudokuSquareLength][SudokuSquareLength];
-            return TwoDimensionalSudoku;
+            int[,] twoDimensionalSudoku = new int[SudokuSquareLength,SudokuSquareLength];
+            return twoDimensionalSudoku;
         }
     }
 }

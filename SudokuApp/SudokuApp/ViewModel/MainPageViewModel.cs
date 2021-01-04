@@ -11,6 +11,7 @@ namespace SudokuApp.ViewModel
     public class MainPageViewModel : ViewModelBase
     {
         private readonly ISudokuManager sudokuManager;
+        
 
         const int NumberOfSudokuFields = 81;
         public MainPageViewModel(ISudokuManager sudokuManager)
@@ -3355,7 +3356,8 @@ namespace SudokuApp.ViewModel
 
         private void Solve(string commandString)
         {
-            // Solver not implemented yet
+            string[] solvedSudoku= sudokuManager.GetSolvedSudoku(GetStringArrayFromFields());
+            AssignValuesToFields(solvedSudoku);
         }
 
         #endregion
