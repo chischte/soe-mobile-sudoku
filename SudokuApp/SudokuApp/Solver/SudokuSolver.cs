@@ -94,6 +94,7 @@ namespace SudokuApp.Solver
                 }
                 if (i == 9)
                 {
+                    // No Possible number found!
                     // Set field zero and abort this recursion:
                     sudokuToSolve[rowsolver, colsolver] = 0;
                 }
@@ -102,7 +103,6 @@ namespace SudokuApp.Solver
                     // Assign value to current field and continue with the next field:
                     sudokuToSolve[rowsolver, colsolver] = possibleFieldValues[i];
                     RecursiveSolver();
-
                 }
 
             }
