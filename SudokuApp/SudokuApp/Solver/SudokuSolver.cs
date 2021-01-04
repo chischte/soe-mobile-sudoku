@@ -8,10 +8,11 @@ namespace SudokuApp.Solver
     {
         private const int NumberOfSudokuFields = 81;
         private const int SudokuSquareLength = 9;
+        private int MaxFieldValue = 9;
         private int[,] sudokuToSolve;
         private int[,] solvedSudoku;
-        private int row;
-        private int col;
+        private int currentFieldRow;
+        private int currentFieldCol;
 
         public SudokuSolver()
         {
@@ -106,8 +107,8 @@ namespace SudokuApp.Solver
                     }
                 }
 
-                row = rowsolver;
-                col = colsolver;
+                currentFieldRow = rowsolver;
+                currentFieldCol = colsolver;
 
                 possibilityArraySolver = CheckAllTheSudokuRulesOfTheEntries();
                 {
@@ -132,7 +133,6 @@ namespace SudokuApp.Solver
                     }
                 }
             }
-
             return false;
         }
 
@@ -142,14 +142,9 @@ namespace SudokuApp.Solver
         {
             int[] possibilityArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            // Check if the 3x3 Sudoku rule is valid
-            possibilityArray = IsTheThreeByThreeRuleValid(getTheThreeByThreeGrid(row), getTheThreeByThreeGrid(col), possibilityArray);
-
-            // Check if the horizontal row and if the vertical col is valid
-            possibilityArray = checkIfHorizontalIsValid(possibilityArray);
-            possibilityArray = checkIfVerticalIsValid(possibilityArray);
-
-            // Change the array to the possible numbers
+            possibilityArray = IsTheThreeByThreeRuleValid(getTheThreeByThreeGrid(currentFieldRow), getTheThreeByThreeGrid(currentFieldCol), possibilityArray);
+            possibilityArray = CheckIfHorizontalIsValid(possibilityArray);
+            possibilityArray = CheckIfVerticalIsValid(possibilityArray);
             possibilityArray = ChangeToPossibleNumbers(possibilityArray);
 
             return possibilityArray;
@@ -199,23 +194,6 @@ namespace SudokuApp.Solver
 
             return possibilityArray;
         }
-
-        private int[] checkIfVerticalIsValid(int[] possibilityArray)
-        {
-            for (int i = 0; i < SudokuSquareLength; i++)
-            {
-                for (int j = 1; j < 10; j++)
-                {
-                    if (sudokuToSolve[i, col] == j)
-                    {
-                        possibilityArray[j - 1] = 1;
-                    }
-                }
-            }
-
-            return possibilityArray;
-        }
-
         private bool isSudokuFullyFilledOut(int[,] sudokuToSolve)
         {
             for (int y = 0; y < SudokuSquareLength; y++)
@@ -232,15 +210,32 @@ namespace SudokuApp.Solver
             return true;
         }
 
-        private int[] checkIfHorizontalIsValid(int[] possibilityArray)
+        private int[] CheckIfVerticalIsValid(int[] possibilityArray)
         {
-            for (int i = 0; i < SudokuSquareLength; i++)
+            for (int checkRow = 0; checkRow < SudokuSquareLength; checkRow++)
             {
-                for (int j = 1; j < 10; j++)
+                for (int possibilityArrayValue = 1; possibilityArrayValue < MaxFieldValue + 1; possibilityArrayValue++)
                 {
-                    if (sudokuToSolve[row, i] == j)
+                    if (sudokuToSolve[checkRow, currentFieldCol] == possibilityArrayValue)
                     {
-                        possibilityArray[j - 1] = 1;
+                        possibilityArray[possibilityArrayValue - 1] = 1;
+                    }
+                }
+            }
+
+            return possibilityArray;
+        }
+      
+
+        private int[] CheckIfHorizontalIsValid(int[] possibilityArray)
+        {
+            for (int checkColumn = 0; checkColumn < SudokuSquareLength; checkColumn++)
+            {
+                for (int possibilityArrayValue = 1; possibilityArrayValue < MaxFieldValue+1; possibilityArrayValue++)
+                {
+                    if (sudokuToSolve[currentFieldRow, checkColumn] == possibilityArrayValue)
+                    {
+                        possibilityArray[possibilityArrayValue - 1] = 1;
                     }
                 }
             }
