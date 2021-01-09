@@ -10,10 +10,10 @@ namespace SudokuWebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class SudokuController : ControllerBase
     {
         private readonly IList<Sudoku> sudokuList = new List<Sudoku>();
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public SudokuController(ILogger<SudokuController> logger)
         {
            //_logger = logger;
             this.sudokuList.Add(new Sudoku() { Id = 0, Name = "beginner", SpaghettiString = "302080105007200060508900047080400302030160058010500670020345001000026009000090526" });
