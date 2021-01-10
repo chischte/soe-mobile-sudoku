@@ -13,9 +13,8 @@ namespace SudokuWebApi.Controllers
     public class SudokuController : ControllerBase
     {
         private readonly IList<Sudoku> sudokuList = new List<Sudoku>();
-        public SudokuController(ILogger<SudokuController> logger)
+        public SudokuController()
         {
-           //_logger = logger;
             this.sudokuList.Add(new Sudoku() { Id = 0, Name = "beginner", SpaghettiString = "302080105007200060508900047080400302030160058010500670020345001000026009000090526" });
             this.sudokuList.Add(new Sudoku() { Id = 1, Name = "intermediate", SpaghettiString = "801003906009007850250100470500061704760830000032000000020019500005000302000452197" });
             this.sudokuList.Add(new Sudoku() { Id = 2, Name = "advanced", SpaghettiString = "407103000910000000600004090130000005098002700700058200000000073009076050000405000" });
@@ -28,12 +27,6 @@ namespace SudokuWebApi.Controllers
             return Ok(sudokuList);
         }
 
-        [HttpPost]
-        public ActionResult<Sudoku> PostElement(Sudoku value)
-        {
-            sudokuList.Add(value);
 
-            return CreatedAtAction(nameof(GetElements), new { id = value.Id }, value);
-        }
     }
 }
