@@ -1,4 +1,5 @@
 ﻿using SudokuApp.view;
+using System.Threading.Tasks;
 
 namespace SudokuApp.Model
 {
@@ -11,6 +12,7 @@ namespace SudokuApp.Model
 
     public interface ISudokuManager
     {
+        Task<string> GetEntryAsync();
         string[] GetNewSudokuStringArray();
         string[] GetCheckedStringArray(string[] sudokuStringArray);
         string[] GetSolvedSudoku(string[] sudokuStringArray);

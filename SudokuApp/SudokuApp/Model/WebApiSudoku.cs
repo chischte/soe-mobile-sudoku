@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace SudokuWebApi.Models
+namespace SudokuApp.Model
 {
-    public class Sudoku
+    public class WebApiSudoku
     {
         public int Id { get; set; }
         public string Name { get; set; }

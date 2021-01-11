@@ -3318,8 +3318,9 @@ namespace SudokuApp.ViewModel
             }
         }
 
-        private void Load(string commandString)
+        private async void Load(string commandString)
         {
+            var loesch = await sudokuManager.GetEntryAsync();
             string[] sudokuStringArray = sudokuManager.GetNewSudokuStringArray();
             DisableFieldsWithFixedNumbers(sudokuStringArray);
             AssignValuesToFields(sudokuStringArray);

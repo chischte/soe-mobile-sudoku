@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.ObjectModel;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using SudokuApp.Solver;
 using SudokuApp.SudokuProvider;
 using SudokuApp.view;
+using SudokuApp.WebApiClient;
 
 namespace SudokuApp.Model
 {
@@ -16,14 +21,15 @@ namespace SudokuApp.Model
 
         const int NumberOfSudokuFields = 81;
         const int SudokuSquareLength = 9;
-
         private readonly SudokuParser sudokuParser;
         private SudokuSolver sudokuSolver;
+        private StandardAsyncHttpClient httpClient;
 
         public SudokuManager()
         {
             this.sudokuParser = new SudokuParser();
             this.sudokuSolver = new SudokuSolver();
+            this.httpClient = new StandardAsyncHttpClient();
         }
 
         #region public methods -------------------------------------------------
@@ -57,9 +63,18 @@ namespace SudokuApp.Model
                 2, 8, 7, 4, 1, 9, 6, 3, 5,
                 3, 4, 5, 2, 8, 6, 1, 7, 9
             };
-
             return ConvertIntToStringArray(sudokuIntArray);
         }
+
+
+        public async Task<string> GetEntryAsync()
+        {
+            string response = await httpClient.SendRequestAsync<string>(new Uri("http://localhost:55555/sudoku"), HttpMethod.Get);
+            return response;
+        }
+
+
+
 
         public string[] GetSolvedSudoku(string[] sudokuStringArray)
         {
