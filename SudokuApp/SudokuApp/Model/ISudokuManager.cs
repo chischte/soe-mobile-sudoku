@@ -12,7 +12,7 @@ namespace SudokuApp.Model
 
     public interface ISudokuManager
     {
-        Task<string> GetEntryAsync();
+        Task<string[]> GetNewSudokuArrayAsync();
         string[] GetNewSudokuStringArray();
         string[] GetCheckedStringArray(string[] sudokuStringArray);
         string[] GetSolvedSudoku(string[] sudokuStringArray);

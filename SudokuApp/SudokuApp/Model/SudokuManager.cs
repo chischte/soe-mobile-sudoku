@@ -6,7 +6,6 @@ using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using SudokuApp.Solver;
-using SudokuApp.SudokuProvider;
 using SudokuApp.view;
 using SudokuApp.WebApiClient;
 
@@ -15,42 +14,25 @@ namespace SudokuApp.Model
     public class SudokuManager : ISudokuManager
     {
         // The SudokuManager works internally with integer arrays.
-        // It gets string arrays from the view model.
-        // It returns string and bool arrays from the view model.
-        // From the sudoku parser it gets an integer array
+        // It gets string arrays from the view model or from the WebApi.
+        // It returns string and bool arrays to the view model.
 
         const int NumberOfSudokuFields = 81;
         const int SudokuSquareLength = 9;
-        private readonly SudokuParser sudokuParser;
-        private SudokuSolver sudokuSolver;
-        private StandardAsyncHttpClient httpClient;
+        private readonly SudokuSolver sudokuSolver;
+        private readonly StandardAsyncHttpClient httpClient;
 
         public SudokuManager()
         {
-            this.sudokuParser = new SudokuParser();
             this.sudokuSolver = new SudokuSolver();
             this.httpClient = new StandardAsyncHttpClient();
         }
 
         #region public methods -------------------------------------------------
 
+        // This method is only used for manual tests without the web api
         public string[] GetNewSudokuStringArray()
         {
-            //int[] sudokuIntArray = sudokuParser.GetSudokuArrayFromJson();
-
-            //int[] sudokuIntArray = new int[]
-            //{
-            //    5, 3, 4, 6, 7, 8, 9, 0, 2,
-            //    6, 7, 2, 1, 9, 5, 3, 4, 8,
-            //    0, 9, 8, 3, 4, 2, 5, 6, 7,
-            //    8, 5, 9, 7, 6, 1, 4, 2, 3,
-            //    4, 2, 6, 8, 5, 3, 7, 9, 1,
-            //    7, 1, 3, 9, 2, 4, 8, 5, 6,
-            //    9, 6, 1, 5, 3, 7, 2, 8, 4,
-            //    2, 8, 7, 4, 1, 9, 6, 3, 5,
-            //    3, 4, 5, 2, 8, 6, 1, 7, 9
-            //};
-
             int[] sudokuIntArray = new int[]
             {
                 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -66,15 +48,40 @@ namespace SudokuApp.Model
             return ConvertIntToStringArray(sudokuIntArray);
         }
 
-
-        public async Task<string> GetEntryAsync()
+        public async Task<string[]> GetNewSudokuArrayAsync()
         {
-            string response = await httpClient.SendRequestAsync<string>(new Uri("http://localhost:55555/sudoku"), HttpMethod.Get);
-            return response;
+            Random random=new Random();
+            int numberOfApiPuzzles = 4;
+            string id = random.Next(0, numberOfApiPuzzles).ToString();
+            string spaghettistring;
+            try
+            {
+                spaghettistring = await httpClient.SendRequestAsync<string>(new Uri("http://localhost:55555/sudoku/"+id), HttpMethod.Get);
+            }
+            catch (Exception e)
+            {
+                return ConvertStringToStringArray("WebApi unreachable");
+            }
+            if (spaghettistring.Length == NumberOfSudokuFields)
+            {
+                string[] stringArray = ConvertStringToStringArray(spaghettistring);
+                int[] intArray = ConvertStringToIntArray(stringArray);
+                intArray = RemoveInvalidEntries(intArray);
+                stringArray = ConvertIntToStringArray(intArray);
+                stringArray = RemoveZerosFromStringArray(stringArray);
+                return stringArray;
+            }
+            return ConvertStringToStringArray("Invalid Puzzle length");
         }
-
-
-
+        private string[] ConvertStringToStringArray(string inputString)
+        {
+            string[] stringArray = new string[NumberOfSudokuFields];
+            for (int i = 0; i < inputString.Length; i++)
+            {
+                stringArray[i] = inputString[i].ToString();
+            }
+            return stringArray;
+        }
 
         public string[] GetSolvedSudoku(string[] sudokuStringArray)
         {
