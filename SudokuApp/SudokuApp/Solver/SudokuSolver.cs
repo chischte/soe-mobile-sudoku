@@ -59,7 +59,7 @@ namespace SudokuApp.Solver
             return oneDimensionalArray;
         }
 
-        public bool RecursiveSolver()
+        private bool RecursiveSolver()
         {
             if (isSudokuFullyFilledOut(sudokuToSolve))
             {

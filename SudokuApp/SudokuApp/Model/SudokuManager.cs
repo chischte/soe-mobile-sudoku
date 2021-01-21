@@ -14,6 +14,7 @@ namespace SudokuApp.Model
     public class SudokuManager : ISudokuManager
     {
         // The SudokuManager works internally with integer arrays.
+        // It sends int[] to and gets int[] from the solver.
         // It gets string arrays from the view model or from the WebApi.
         // It returns string and bool arrays to the view model.
 
@@ -152,6 +153,7 @@ namespace SudokuApp.Model
             sudokuIntArray = RemoveInvalidEntries(sudokuIntArray);
             return sudokuIntArray;
         }
+
         private int[] RemoveInvalidEntries(int[] intArray)
         {
             for (int i = 0; i < intArray.Length; i++)
@@ -178,6 +180,7 @@ namespace SudokuApp.Model
             }
             return hasEmptyFields;
         }
+
         private bool CheckSudokuForDuplicates(int[] sudokuIntArray)
         {
             bool[] duplicatesArray = GetDuplicatesArray(sudokuIntArray);
