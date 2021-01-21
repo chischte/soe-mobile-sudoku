@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SudokuApp.Solver
 {
-    class SudokuSolver
+    public class SudokuSolver
     {
         private const int NumberOfSudokuFields = 81;
         private const int SudokuSquareLength = 9;
