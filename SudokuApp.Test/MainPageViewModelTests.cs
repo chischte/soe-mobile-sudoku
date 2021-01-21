@@ -28,7 +28,7 @@ namespace SudokuApp
             this.testee.LoadButtonCommand.Execute("");
 
             // Assert
-            this.sudokuMock.Verify(m => m.GetNewSudokuStringArray(), Times.Once);
+            this.sudokuMock.Verify(m => m.GetNewSudokuArrayAsync(), Times.Once);
 
         }
 
